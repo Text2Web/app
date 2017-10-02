@@ -1,5 +1,6 @@
 .idea
 /*.iml
+/content
 
 # CakePHP specific files #
 ##########################

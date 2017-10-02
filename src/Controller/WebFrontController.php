@@ -12,10 +12,16 @@ namespace App\Controller;
 class WebFrontController extends AppController
 {
 
+    public $components = array('FileAndDirectory');
+
     public function index()
     {
-        echo "Touhid";
-        $this->render();
+        echo "<pre>";
+        print_r($this->FileAndDirectory->getRootAndSubList());
+
+        die();
+
+//        $this->render();
     }
 
 }
