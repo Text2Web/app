@@ -39,23 +39,37 @@ class FileAndDirectoryComponent extends Component
         return null;
     }
 
+    public function formatName($name){
+        $splitString = trim($name, ' ');
+        $explodeDot = explode('.', $splitString);
+        $realName = isset($explodeDot[1])?$explodeDot[1]:$name;
+        $realName = ucwords(str_replace("_", " ", $realName));
+
+        return $realName;
+    }
+
     public function scanMenuPool($location)
     {
         $menuList = array();
         foreach (new DirectoryIterator($location) as $fileInfo) {
             if ($fileInfo->isDot()) continue;
-            if ($fileInfo->isDir()){
-                $menuInformation = new stdClass();
-                $menuInformation->fileName = $fileInfo->getFilename();
-                $menuInformation->menuInfo = $this->getMenuInfo($fileInfo->getPathname());
-                $menuInformation->lastModified = $fileInfo->getMTime();
-                $menuInformation->subMenues = null;
-                if (count(glob($fileInfo->getPathname() . DS . "*")) !== 0){
-                    $menuInformation->subMenues = $this->scanMenuPool($fileInfo->getPathname());
-                }
-                array_push($menuList, $menuInformation);
+            if ($fileInfo->isFile() && $fileInfo->getExtension() !== "md") continue;
+            $menuInformation = new stdClass();
+            $menuInformation->fileName = $fileInfo->getFilename();
+            $menuInformation->displayName = $this->formatName($fileInfo->getFilename());
+            $menuInformation->menuInfo = $this->getMenuInfo($fileInfo->getPathname());
+            $menuInformation->lastModified = $fileInfo->getMTime();
+            $menuInformation->isFile = $fileInfo->isFile();
+            $menuInformation->subMenues = null;
+            if ($fileInfo->isDir() && count(glob($fileInfo->getPathname() . DS . "*")) !== 0){
+                $menuInformation->subMenues = $this->scanMenuPool($fileInfo->getPathname());
             }
+            array_push($menuList, $menuInformation);
         }
+        usort($menuList, function($a, $b)
+        {
+            return strnatcmp($a->fileName, $b->fileName);
+        });
         return $menuList;
     }
 
