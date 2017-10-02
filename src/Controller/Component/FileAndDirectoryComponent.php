@@ -43,7 +43,7 @@ class FileAndDirectoryComponent extends Component
         $splitString = trim($name, ' ');
         $explodeDot = explode('.', $splitString);
         $realName = isset($explodeDot[1])?$explodeDot[1]:$name;
-        $realName = ucwords(str_replace("_", " ", $realName));
+        $realName = ucwords(preg_replace("/[_-]/", " ", $realName));
 
         return $realName;
     }
@@ -73,7 +73,7 @@ class FileAndDirectoryComponent extends Component
         return $menuList;
     }
 
-    public function getRootAndSubList(){
+    public function getMenuList(){
         print_r($this->scanMenuPool(PathResolver::getContentRoot()));
     }
 }
