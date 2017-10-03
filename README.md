@@ -22,7 +22,11 @@ composer require cakephp/migrations
 bin/cake migrations migrate
 ```
 
+**Create Seeds**
 
+```
+bin/cake bake seed SeederName
+```
 
 
 
