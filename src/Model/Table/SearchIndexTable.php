@@ -14,11 +14,9 @@ class SearchIndexTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
         $this->setTable('search_index');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
         $this->addBehavior('Timestamp');
     }
 

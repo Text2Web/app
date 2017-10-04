@@ -29,6 +29,17 @@ bin/cake bake seed SeederName
 ```
 
 
+**Generate Entity and Table**
+
+```
+bin/cake bake model Articles
+```
+
+**Run Seeds**
+
+```
+bin/cake migrations seed
+```
 
 
 
