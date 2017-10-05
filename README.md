@@ -41,7 +41,15 @@ bin/cake bake model Articles
 bin/cake migrations seed
 ```
 
+**Create Plugin**
 
+```
+bin/cake bake plugin PluginName
+```
+
+bin/cake migrations create migration_name --plugin PluginName
+bin/cake bake all --plugin PluginName
+bin/cake migrations migrate -p PluginName
 
 
 **References**
