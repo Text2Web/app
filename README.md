@@ -49,7 +49,10 @@ bin/cake bake plugin PluginName
 
 bin/cake migrations create migration_name --plugin PluginName
 bin/cake bake all --plugin PluginName
-bin/cake migrations migrate -p PluginName
+bin/cake migrations migrate -p ManagePackage
+bin/cake bake seed Bootstrap -p ManagePackage
+
+bin/cake migrations seed -p ManagePackage
 
 
 **References**
