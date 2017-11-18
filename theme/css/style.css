@@ -1,3 +1,4 @@
+
 /* Layout css Start */
 .workstation-body {
     display: -webkit-box; 
@@ -18,13 +19,22 @@
     overflow: hidden;
     overflow-y: auto;
 }
-.right-sidebar, 
+
+.right-sidebar {
+    flex-basis: 25%;
+    width: 25%;
+    padding: 15px 15px 0 15px;
+    background-color: #ffffff;
+}
+
 .user-profile {
     flex-basis: 18%;
     width: 18%;
     padding: 15px 15px 0 15px;
     background-color: #ffffff;
 }
+
+
 .right-sidebar{
     border-left: 1px solid #dedede;
 }
