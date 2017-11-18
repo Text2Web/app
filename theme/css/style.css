@@ -1,3 +1,8 @@
+.image-200x200{
+    height: 150px;
+    width: 150px;
+}
+
 
 /* Layout css Start */
 .workstation-body {
@@ -21,8 +26,8 @@
 }
 
 .right-sidebar {
-    flex-basis: 25%;
-    width: 25%;
+    flex-basis: 300px;
+    width: 300px;
     padding: 15px 15px 0 15px;
     background-color: #ffffff;
 }
