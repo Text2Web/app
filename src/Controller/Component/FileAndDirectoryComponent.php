@@ -53,6 +53,13 @@ class FileAndDirectoryComponent extends Component
         $menuList = array();
         foreach (new DirectoryIterator($location) as $fileInfo) {
             if ($fileInfo->isDot()) continue;
+            if (
+                $fileInfo->getFilename() === ".idea" ||
+                $fileInfo->getFilename() === ".git" ||
+                $fileInfo->getFilename() === ".gitignore"
+            ){
+                continue;
+            }
             if ($fileInfo->isFile() && $fileInfo->getExtension() !== "md") continue;
             $menuInformation = new stdClass();
             $menuInformation->fileName = $fileInfo->getFilename();
