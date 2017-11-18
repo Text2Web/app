@@ -45,7 +45,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="user-profile">
         <div class="user-info">
             <div class="user-profile-block  mb-2">
-                <?= $this->Html->image('user.jpg', ['alt' => 'User', 'class' => 'img-thumbnail']) ?>
+                <img src="imgs/user.jpg" alt="user" class="img-thumbnail">
             </div>
             <div class="user-about">
                 <h3 class=" mb-1">H.M. Touhid Mia</h3>
@@ -91,7 +91,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="#">
                 <div class="content-block media">
                     <div class="media-body text-center">
-                        <?= $this->Html->image('default_thumbs.jpg', ['alt' => 'Default', 'class' => 'img-thumbnail']) ?>
+                        <img src="imgs/default_thumbs.jpg" class="image-200x200 img-thumbnail">
                         <h5>Project Name</h5>
                     </div>
                 </div>

@@ -1,0 +1,154 @@
+.image-150x150{
+    height: 150px;
+    width: 150px;
+}
+
+
+/* Layout css Start */
+.workstation-body {
+    display: -webkit-box; 
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+.container-area {
+    -webkit-flex: 1;
+    -ms-flex: 1; 
+    flex: 1;
+    padding: 15px 0 0 0;
+    background-color: #f5f5f5;
+}
+.scrollable-area {
+    height: calc(100vh - 93px);
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.right-sidebar {
+    flex-basis: 300px;
+    width: 300px;
+    padding: 15px 15px 0 15px;
+    background-color: #ffffff;
+}
+
+.user-profile {
+    flex-basis: 18%;
+    width: 18%;
+    padding: 15px 15px 0 15px;
+    background-color: #ffffff;
+}
+
+
+.right-sidebar{
+    border-left: 1px solid #dedede;
+}
+.user-profile{
+    border-right: 1px solid #dedede;
+}
+.repository-sidebar {
+    height: calc(100vh - 15px);
+    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+
+.repository-boxs {
+    display: -webkit-box; 
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+    justify-content: space-between;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    padding-right: 15px;
+}
+.repository-boxs .content-block {
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,.15);
+    margin: 15px 0;
+    -webkit-flex-basis: 49%;
+    flex-basis: 49%;
+    background-color: #ffffff;
+}
+.repository-sidebar .content-block {
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,.15);
+    margin: 0 0 20px 0;
+}
+.repository-sidebar {
+    height: calc(100vh - 15px);
+    overflow: hidden;
+    overflow-y: auto;
+    padding-right: 15px;
+}
+/* Layout css End */
+.user-contact .lists {
+    list-style: none;
+    padding: 0;
+}
+.search-part.container-fluid p {
+    margin: 0;
+}
+.user-contact .lists .lists-item i {
+    padding-right: 10px;
+    width: 25px;
+}
+.media-left {
+    margin-right: 10px;
+}
+.badges a {
+    display: inline-block;
+    position: relative;
+    padding-left: 15px;
+}
+.badges a:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #89e051;
+    transform: translateY(-50%);
+}
+/* hover css */
+.repository-boxs .content-block,
+.repository-sidebar .content-block {
+    position: relative;
+    transition: all 300ms ease;
+}
+
+.repository-boxs .content-block:hover,
+.repository-sidebar .content-block:hover {
+    -webkit-box-shadow: 0px 3px 21px -5px rgba(0,0,0,0.44);
+    -moz-box-shadow: 0px 3px 21px -5px rgba(0,0,0,0.44);
+    box-shadow: 0px 3px 21px -5px rgba(0,0,0,0.44);
+    transition: all 300ms ease;
+}
+
+/* Responsive css */
+@media screen and (max-width: 1279px) and (min-width: 768px) {
+    .right-sidebar, 
+    .user-profile {
+        flex-basis: 22%;
+        width: 22%;
+    }
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .repository-boxs .content-block {
+        flex-basis: 100%;
+    }
+}    
+
+@media screen and (max-width: 767px) and (min-width: 320px) {
+    .repository-boxs .content-block {
+        flex-basis: 100%;
+    }
+}    
