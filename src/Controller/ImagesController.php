@@ -15,6 +15,8 @@ class ImagesController extends AppController
 {
 
     public function index(){
+        print_r($this->request->getQueryParams());
+        die();
         return $this->response->withFile(PathResolver::getTopicImage("1.java", "java.png"));
     }
 }

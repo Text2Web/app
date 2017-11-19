@@ -22,14 +22,16 @@ class MenuHelper extends Helper
         $menuList = $fileAndDirectoryService->getMenuList();
         $html = '';
         $url = $this->Url->build('/assets/images');
+        $parent = "";
         foreach ($menuList as $menu){
-//            print_r($menu);
+            $name = $menu->displayName;
+            $parent = $menu->nameOnly;
+            $url .= "/$parent/$parent" . ".png";
             $html .= '<a href="#">';
             $html .= '<div class="content-block media">';
             $html .= '<div class="media-body text-center">';
-//            $html .= $this->Html->image('default_thumbs.jpg', ['alt' => 'Default', 'class' => 'img-thumbnail']);
-            $html .= '<img src= "' . $url .'" class="img-thumbnail" />';
-            $html .= '<h5>' . $menu->displayName .'</h5>';
+            $html .= '<img src= "' . $url .'" class="img-thumbnail"  alt= " ' . $name . '"/>';
+            $html .= '<h5>' . $name .'</h5>';
             $html .= '</div></div></a>';
         }
         echo $html;

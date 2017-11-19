@@ -41,7 +41,13 @@ class FileAndDirectoryService
         $explodeDot = explode('.', $splitString);
         $realName = isset($explodeDot[1])?$explodeDot[1]:$name;
         $realName = ucwords(preg_replace("/[_-]/", " ", $realName));
+        return $realName;
+    }
 
+    public function getNameOnly($name){
+        $splitString = trim($name, ' ');
+        $explodeDot = explode('.', $splitString);
+        $realName = isset($explodeDot[1])?$explodeDot[1]:$name;
         return $realName;
     }
 
@@ -62,6 +68,7 @@ class FileAndDirectoryService
             if ($fileInfo->isFile() && $fileInfo->getExtension() !== "md") continue;
             $menuInformation = new stdClass();
             $menuInformation->fileName = $fileInfo->getFilename();
+            $menuInformation->nameOnly = $this->getNameOnly($fileInfo->getFilename());
             $menuInformation->displayName = $this->formatName($fileInfo->getFilename());
             $menuInformation->menuInfo = $this->getMenuInfo($fileInfo->getPathname());
             $menuInformation->lastModified = $fileInfo->getMTime();
