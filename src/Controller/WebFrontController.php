@@ -12,7 +12,6 @@ namespace App\Controller;
 class WebFrontController extends AppController
 {
 
-    public $components = array('FileAndDirectory');
 
     public function index()
     {

@@ -6,15 +6,12 @@
  * Time: 07:08 PM
  */
 
-namespace App\Controller\Component;
+namespace App\Utils;
 
-use App\Utils\AppConstant;
-use App\Utils\PathResolver;
-use Cake\Controller\Component;
 use DirectoryIterator;
 use stdClass;
 
-class FileAndDirectoryComponent extends Component
+class FileAndDirectoryService
 {
 
 
@@ -81,6 +78,6 @@ class FileAndDirectoryComponent extends Component
     }
 
     public function getMenuList(){
-        print_r($this->scanMenuPool(PathResolver::getContentRoot()));
+        return $this->scanMenuPool(PathResolver::getContentRoot());
     }
 }

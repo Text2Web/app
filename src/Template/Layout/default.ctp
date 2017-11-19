@@ -87,15 +87,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </div>
     <div class="right-sidebar">
         <div class="repository-sidebar">
-
-            <a href="#">
-                <div class="content-block media">
-                    <div class="media-body text-center">
-                        <?= $this->Html->image('default_thumbs.jpg', ['alt' => 'Default', 'class' => 'img-thumbnail']) ?>
-                        <h5>Project Name</h5>
-                    </div>
-                </div>
-            </a>
+            <?= $this->Menu->getMenu() ?>
         </div>
     </div>
 </section>
