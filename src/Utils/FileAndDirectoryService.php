@@ -53,6 +53,8 @@ class FileAndDirectoryService
             if (
                 $fileInfo->getFilename() === ".idea" ||
                 $fileInfo->getFilename() === ".git" ||
+                $fileInfo->getFilename() === "empty" ||
+                $fileInfo->getFilename() === "topic-resources" ||
                 $fileInfo->getFilename() === ".gitignore"
             ){
                 continue;

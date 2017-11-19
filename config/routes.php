@@ -26,9 +26,15 @@ use Cake\Routing\Route\DashedRoute;
 
 Router::defaultRouteClass(DashedRoute::class);
 
+
+Router::scope('/assets', function (RouteBuilder $routes) {
+    $routes->connect('/*', ['controller' => 'Images', 'action' => 'index']);
+});
+
 Router::scope('/manage-me', function (RouteBuilder $routes) {
     $routes->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'index']);
 });
+
 
 Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/*', ['controller' => 'WebFront', 'action' => 'index']);

@@ -26,5 +26,8 @@ class PathResolver
         return $path . DS .  AppConstant::INFO_FILE_NAME;
     }
 
+    public static function getTopicImage($topicName, $fileName) {
+        return self::getContentRoot() . DS . $topicName .  DS . "topic-resources" . DS . $fileName;
+    }
 
 }

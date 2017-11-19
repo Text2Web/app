@@ -26,7 +26,8 @@ class MenuHelper extends Helper
             $html .= '<a href="#">';
             $html .= '<div class="content-block media">';
             $html .= '<div class="media-body text-center">';
-            $html .= $this->Html->image('default_thumbs.jpg', ['alt' => 'Default', 'class' => 'img-thumbnail']);
+//            $html .= $this->Html->image('default_thumbs.jpg', ['alt' => 'Default', 'class' => 'img-thumbnail']);
+            $html .= '<img src= "/app/images/get" class="img-thumbnail" />';
             $html .= '<h5>' . $menu->displayName .'</h5>';
             $html .= '</div></div></a>';
         }
