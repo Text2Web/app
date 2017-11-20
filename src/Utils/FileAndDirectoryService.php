@@ -62,6 +62,7 @@ class FileAndDirectoryService
                     $fileInfo->getFilename() === ".git" ||
                     $fileInfo->getFilename() === "empty" ||
                     $fileInfo->getFilename() === "topic-resources" ||
+                    $fileInfo->getFilename() === "push" ||
                     $fileInfo->getFilename() === ".gitignore"
                 ){
                     continue;
