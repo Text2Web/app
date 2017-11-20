@@ -14,9 +14,24 @@ use App\Utils\PathResolver;
 class ImagesController extends AppController
 {
 
+    private function startsWith($haystack, $needle){
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
+    }
+
     public function index(){
-        print_r($this->request->getQueryParams());
-        die();
-        return $this->response->withFile(PathResolver::getTopicImage("1.java", "java.png"));
+        $image = PathResolver::getDefaultThumbs();
+        if ($this->startsWith($this->request->url,"assets/images/")){
+            $imagePath = str_replace("assets/images/","",$this->request->url);
+            $imagePath = explode("/", $imagePath);
+            if (count($imagePath) === 2){
+                $imagePath = PathResolver::getTopicImageWithWildcard("*" . $imagePath[0], $imagePath[1]);
+                if (file_exists($imagePath)){
+                    $image = $imagePath;
+                }
+            }
+
+        }
+        return $this->response->withFile($image);
     }
 }

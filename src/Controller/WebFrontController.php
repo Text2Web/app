@@ -15,6 +15,10 @@ class WebFrontController extends AppController
 
     public function index()
     {
+
+        print_r($this->request->url);
+//        die();
+
 //        echo "<pre>";
 //        print_r($this->FileAndDirectory->getMenuList());
 //

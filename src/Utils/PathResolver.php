@@ -12,10 +12,16 @@ namespace App\Utils;
 class PathResolver
 {
     private static $CONTENT_DIR = "content";
+    private static $WEB_ROOT = "webroot";
 
 
     public static function getContentRoot() {
         return ROOT . DS . self::$CONTENT_DIR;
+    }
+
+    public static function getWebRoot($path = "")
+    {
+        return ROOT . DS . self::$WEB_ROOT . DS . $path;
     }
 
     public static function getMenuInfo($path,  $dirName) {
@@ -28,6 +34,20 @@ class PathResolver
 
     public static function getTopicImage($topicName, $fileName) {
         return self::getContentRoot() . DS . $topicName .  DS . "topic-resources" . DS . $fileName;
+    }
+
+    public static function getTopicImageWithWildcard($topicName, $fileName) {
+        $realPath = self::getContentRoot() . DS . $topicName .  DS . "topic-resources" . DS . $fileName;
+        $path = glob($realPath);
+        if (count($path) != 0){
+            return $path[0];
+        }
+        return $realPath;
+    }
+
+    public static function getDefaultThumbs()
+    {
+        return self::getWebRoot("img" . DS . "default_thumbs.jpg");
     }
 
 }

@@ -54,35 +54,37 @@ class FileAndDirectoryService
     public function scanMenuPool($location)
     {
         $menuList = array();
-        foreach (new DirectoryIterator($location) as $fileInfo) {
-            if ($fileInfo->isDot()) continue;
-            if (
-                $fileInfo->getFilename() === ".idea" ||
-                $fileInfo->getFilename() === ".git" ||
-                $fileInfo->getFilename() === "empty" ||
-                $fileInfo->getFilename() === "topic-resources" ||
-                $fileInfo->getFilename() === ".gitignore"
-            ){
-                continue;
+        if (file_exists($location)){
+            foreach (new DirectoryIterator($location) as $fileInfo) {
+                if ($fileInfo->isDot()) continue;
+                if (
+                    $fileInfo->getFilename() === ".idea" ||
+                    $fileInfo->getFilename() === ".git" ||
+                    $fileInfo->getFilename() === "empty" ||
+                    $fileInfo->getFilename() === "topic-resources" ||
+                    $fileInfo->getFilename() === ".gitignore"
+                ){
+                    continue;
+                }
+                if ($fileInfo->isFile() && $fileInfo->getExtension() !== "md") continue;
+                $menuInformation = new stdClass();
+                $menuInformation->fileName = $fileInfo->getFilename();
+                $menuInformation->nameOnly = $this->getNameOnly($fileInfo->getFilename());
+                $menuInformation->displayName = $this->formatName($fileInfo->getFilename());
+                $menuInformation->menuInfo = $this->getMenuInfo($fileInfo->getPathname());
+                $menuInformation->lastModified = $fileInfo->getMTime();
+                $menuInformation->isFile = $fileInfo->isFile();
+                $menuInformation->subMenues = null;
+                if ($fileInfo->isDir() && count(glob($fileInfo->getPathname() . DS . "*")) !== 0){
+                    $menuInformation->subMenues = $this->scanMenuPool($fileInfo->getPathname());
+                }
+                array_push($menuList, $menuInformation);
             }
-            if ($fileInfo->isFile() && $fileInfo->getExtension() !== "md") continue;
-            $menuInformation = new stdClass();
-            $menuInformation->fileName = $fileInfo->getFilename();
-            $menuInformation->nameOnly = $this->getNameOnly($fileInfo->getFilename());
-            $menuInformation->displayName = $this->formatName($fileInfo->getFilename());
-            $menuInformation->menuInfo = $this->getMenuInfo($fileInfo->getPathname());
-            $menuInformation->lastModified = $fileInfo->getMTime();
-            $menuInformation->isFile = $fileInfo->isFile();
-            $menuInformation->subMenues = null;
-            if ($fileInfo->isDir() && count(glob($fileInfo->getPathname() . DS . "*")) !== 0){
-                $menuInformation->subMenues = $this->scanMenuPool($fileInfo->getPathname());
-            }
-            array_push($menuList, $menuInformation);
+            usort($menuList, function($a, $b)
+            {
+                return strnatcmp($a->fileName, $b->fileName);
+            });
         }
-        usort($menuList, function($a, $b)
-        {
-            return strnatcmp($a->fileName, $b->fileName);
-        });
         return $menuList;
     }
 
