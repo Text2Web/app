@@ -17,6 +17,7 @@ class MenuHelper extends Helper
 
     public $helpers = ['Html','Url'];
     const MENU_CACHE = "MENU_CACHE";
+    const HOME_PAGE_MENU_CACHE = "HOME_PAGE_MENU_CACHE";
 
     public function getMenu()
     {
@@ -25,7 +26,7 @@ class MenuHelper extends Helper
         $html = AppCacheManager::read(self::MENU_CACHE);
         if ($html === false) {
             $url = $this->Url->build('/assets/images');
-            $parent = "";
+            $html = "";
             foreach ($menuList as $menu){
                 $name = $menu->displayName;
                 $parent = $menu->nameOnly;
@@ -42,4 +43,30 @@ class MenuHelper extends Helper
         echo $html;
     }
 
+    public function getSubMenu()
+    {
+        $fileAndDirectoryService = new FileAndDirectoryService();
+        $menuList = $fileAndDirectoryService->getMenuList();
+        $html = AppCacheManager::read(self::HOME_PAGE_MENU_CACHE);
+        if ($html === false) {
+            $html = "";
+            foreach ($menuList as $menu){
+                $pageUrl = $menu->nameOnly;
+                if ($menu->subMenues != null){
+                    $parentName = $menu->displayName;
+                    foreach ($menu->subMenues as $subMenu){
+                        $pageUrl = $this->Url->build("/$pageUrl/$subMenu->nameOnly");
+                        $name = $subMenu->displayName;
+                        $html .= "<a href='$pageUrl'><div class='content-block'>";
+                        $html .= "<a href='$pageUrl'><h5>" . $name .'</h5></a>';
+                        $html .= "<span class='badges'><a href='$pageUrl'>" . $parentName .'</a></span>';
+                        $html .= '</div></a>';
+                    }
+                }
+
+            }
+            AppCacheManager::cache(self::HOME_PAGE_MENU_CACHE, $html);
+        }
+        echo $html;
+    }
 }

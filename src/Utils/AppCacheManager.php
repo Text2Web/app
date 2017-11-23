@@ -15,10 +15,11 @@ use Cake\Cache\Cache;
 class AppCacheManager
 {
 
-    const isCacheEnable = true;
+    const isCacheEnable = false;
 
     public static function cleanAll(){
         Cache::delete(MenuHelper::MENU_CACHE);
+        Cache::delete(MenuHelper::HOME_PAGE_MENU_CACHE);
     }
 
     public static function cache($cacheKey, $cacheValue){

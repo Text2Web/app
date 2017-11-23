@@ -36,6 +36,7 @@ $cakeDescription = 'HMTMCSE';
     <?= $this->fetch('script') ?>
 
     <?= $this->Html->script('jquery-3.2.1.min.js') ?>
+    <?= $this->Html->script('popper.min.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
 </head>
 
