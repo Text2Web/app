@@ -41,63 +41,60 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 
 <body>
-<section class="workstation-body">
-    <div class="user-profile">
-        <div class="user-info">
-            <div class="user-profile-block  mb-2">
-                <img src="imgs/user.jpg" alt="user" class="img-thumbnail">
-            </div>
-            <div class="user-about">
-                <h3 class=" mb-1">H.M. Touhid Mia</h3>
-                <p class="sub-name  mb-2"><a href="#">hmtmcse</a></p>
-                <p>There are many variations of passages of Lorem Ipsum available.</p>
-                <hr>
-            </div>
-            <div class="user-contact">
-                <ul class="lists">
-                    <li class="lists-item"><i class="fa fa-map-marker" aria-hidden="true"></i>Rampura, Dhaka-1219</li>
-                    <li class="lists-item"><i class="fa fa-link" aria-hidden="true"></i><a href="#">www.yourwebsite.com</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container-area">
-        <div class="col-md-12">
-            <div class="search-part container-fluid">
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputinput" aria-describedby="searchHelp" placeholder="Search Here">
-                    </div>
-                </form>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Popular repositories</p>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <p>Customize your pinned repositories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="repository-boxs scrollable-area">
-                    <?= $this->fetch('content') ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="right-sidebar">
-        <div class="repository-sidebar">
 
-            <a href="#">
-                <div class="content-block media">
-                    <div class="media-body text-center">
-                        <img src="imgs/default_thumbs.jpg" class="image-200x200 img-thumbnail">
-                        <h5>Project Name</h5>
-                    </div>
-                </div>
-            </a>
-        </div>
+<a id="skippy" class="sr-only sr-only-focusable" href="#content">
+    <div class="container">
+        <span class="skiplink-text">Skip to main content</span>
     </div>
-</section>
+</a>
+
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+    <a class="navbar-brand mr-0 mr-md-2" href="https://getbootstrap.com/" aria-label="Bootstrap">
+        <svg class="d-block" width="36" height="36" viewbox="0 0 612 612" xmlns="http://www.w3.org/2000/svg" focusable="false"><title>Bootstrap</title><path fill="currentColor" d="M510 8a94.3 94.3 0 0 1 94 94v408a94.3 94.3 0 0 1-94 94H102a94.3 94.3 0 0 1-94-94V102a94.3 94.3 0 0 1 94-94h408m0-8H102C45.9 0 0 45.9 0 102v408c0 56.1 45.9 102 102 102h408c56.1 0 102-45.9 102-102V102C612 45.9 566.1 0 510 0z"/><path fill="currentColor" d="M196.77 471.5V154.43h124.15c54.27 0 91 31.64 91 79.1 0 33-24.17 63.72-54.71 69.21v1.76c43.07 5.49 70.75 35.82 70.75 78 0 55.81-40 89-107.45 89zm39.55-180.4h63.28c46.8 0 72.29-18.68 72.29-53 0-31.42-21.53-48.78-60-48.78h-75.57zm78.22 145.46c47.68 0 72.73-19.34 72.73-56s-25.93-55.37-76.46-55.37h-74.49v111.4z"/></svg>
+
+    </a>
+
+    <div class="navbar-nav-scroll">
+        <ul class="navbar-nav bd-navbar-nav flex-row">
+            <li class="nav-item">
+                <a class="nav-link " href="">Home</a>
+            </li>
+        </ul>
+    </div>
+
+</header>
+
+
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+            <form class="bd-search d-flex align-items-center">
+                <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+                <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/></svg>
+
+                </button>
+            </form>
+
+            <nav class="collapse bd-links" id="bd-docs-nav">
+                <div class="bd-toc-item active">
+                    <a class="bd-toc-link" href="index.html">
+                        Getting started
+                    </a>
+                </div>
+            </nav>
+
+        </div>
+
+
+
+        <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+            <h1 class="bd-title" id="content">Introduction</h1>
+            <p class="bd-lead">Get started with Bootstrap, the world's most popular framework for building responsive, mobile-first sites, with the Bootstrap CDN and a template starter page.</p>
+        </main>
+
+
+    </div>
+</div>
 </body>
 </html>

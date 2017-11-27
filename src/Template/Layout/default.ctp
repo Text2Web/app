@@ -28,7 +28,6 @@ $cakeDescription = 'HMTMCSE';
 
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('docs.min.css') ?>
     <?= $this->Html->css('font-awesome/font-awesome.min.css') ?>
 
     <?= $this->fetch('meta') ?>

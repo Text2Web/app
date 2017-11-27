@@ -9,22 +9,18 @@
 namespace App\Controller;
 
 
+use App\Service\ReaderService;
+
 class WebFrontController extends AppController
 {
 
 
     public function index()
     {
-
-//        print_r($this->request->url);
-//        die();
-
-//        echo "<pre>";
-//        print_r($this->FileAndDirectory->getMenuList());
-//
-//        die();
-//
-////        $this->render();
+        $readerService = new ReaderService();
+        $pageData = $readerService->getPage($this->request->url);
+        $this->viewBuilder()->setLayout($pageData->getLayout());
+        $this->set('pageData', $pageData);
     }
 
 }

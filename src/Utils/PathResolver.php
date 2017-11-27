@@ -36,6 +36,19 @@ class PathResolver
         return self::getContentRoot() . DS . $topicName .  DS . "topic-resources" . DS . $fileName;
     }
 
+    public static function getContentPathByArray($rootPath, $pathArray = array()){
+        $linkPath = "";
+        foreach ($pathArray as $path){
+            $linkPath .= "*" . $path . DS;
+        }
+        $linkPath = $rootPath . DS . $linkPath;
+        $path = glob($linkPath);
+        if (count($path) != 0){
+            return $path[0];
+        }
+        return null;
+    }
+
     public static function getTopicImageWithWildcard($topicName, $fileName) {
         $realPath = self::getContentRoot() . DS . $topicName .  DS . "topic-resources" . DS . $fileName;
         $path = glob($realPath);
