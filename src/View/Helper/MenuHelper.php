@@ -43,10 +43,8 @@ class MenuHelper extends Helper
         echo $html;
     }
 
-    public function getSubMenu()
+    public function getSubMenu($menuList)
     {
-        $fileAndDirectoryService = new FileAndDirectoryService();
-        $menuList = $fileAndDirectoryService->getMenuList();
         $html = AppCacheManager::read(self::HOME_PAGE_MENU_CACHE);
         if ($html === false) {
             $html = "";

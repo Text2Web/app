@@ -44,7 +44,7 @@ class PathResolver
         $linkPath = $rootPath . DS . $linkPath;
         $path = glob($linkPath);
         if (count($path) != 0){
-            return $path[0];
+            return  rtrim($path[0],DS);
         }
         return null;
     }

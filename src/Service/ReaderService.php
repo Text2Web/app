@@ -22,8 +22,8 @@ class ReaderService
 
     public function getPage($url){
         $contentRoot = PathResolver::getContentRoot();
-        $urlFragments = explode("/", rtrim($url,'/'));
-        $path = PathResolver::getContentPathByArray($contentRoot, $urlFragments);
+        $url = rtrim($url,'/');
+        $urlFragments = empty($url)? array() : explode("/", $url);
         $pageData = new PageData();
         $numberOfFragment = count($urlFragments);
         if ($numberOfFragment === self::HOME_PAGE){
@@ -31,12 +31,14 @@ class ReaderService
             $pageData->setHomeTopics($this->getMenuList($contentRoot));
         }else if ($numberOfFragment === self::CHAPTER_PAGE){
             $pageData->setLayout(self::DEFAULT_LAYOUT);
-            $pageData->setHomeTopics($this->getMenuList($contentRoot));
+            $path = PathResolver::getContentPathByArray($contentRoot, $urlFragments);
+            $pageData->setHomeTopics($this->getMenuList($path));
         }else{
             $pageData->setLayout(self::TUTORIAL_LAYOUT);
 //            $pageData->setLeftMenu($this->getPage($contentRoot));
         }
 
+//        die();
         return $pageData;
 
 //        echo $path;
