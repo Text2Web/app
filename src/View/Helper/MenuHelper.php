@@ -30,17 +30,40 @@ class MenuHelper extends Helper
             foreach ($menuList as $menu){
                 $name = $menu->displayName;
                 $parent = $menu->nameOnly;
-                $urlInternal = "$url/$parent/$parent" . ".png";
-                $html .= '<a href="#">';
+                $urlImage = "$url/$parent/$parent" . ".png";
+                $pageUrl = $this->Url->build("/$parent");
+                $html .= "<a href='$pageUrl'>";
                 $html .= '<div class="content-block media">';
                 $html .= '<div class="media-body text-center">';
-                $html .= '<img src= "' . $urlInternal .'" class="img-thumbnail"  alt= " ' . $name . '"/>';
+                $html .= '<img src= "' . $urlImage .'" class="img-thumbnail"  alt= " ' . $name . '"/>';
                 $html .= '<h5>' . $name .'</h5>';
                 $html .= '</div></div></a>';
             }
             AppCacheManager::cache(self::MENU_CACHE, $html);
         }
         echo $html;
+    }
+
+
+    public function thumbTextMenuGenerator($parentURL, $parentName, $menuArray){
+        $html = "";
+        foreach ($menuArray as $subMenu){
+            $pageUrl = $this->Url->build("/$parentURL/$subMenu->nameOnly");
+            $name = $subMenu->displayName;
+            $html .= "<a href='$pageUrl'><div class='content-block'>";
+            $html .= "<a href='$pageUrl'><h5>" . $name .'</h5></a>';
+            $html .= "<span class='badges'><a href='$pageUrl'>" . $parentName .'</a></span>';
+            $html .= '</div></a>';
+        }
+        return $html;
+    }
+
+    public function getThumbMenu($pageData){
+        if ($pageData->getParentURL() !== null && $pageData->getParentName() !== null){
+            echo $this->thumbTextMenuGenerator($pageData->getParentURL(), $pageData->getParentName(), $pageData->getHomeTopics());
+        }else{
+            echo $this->getSubMenu($pageData->getHomeTopics());
+        }
     }
 
     public function getSubMenu($menuList)
@@ -52,19 +75,11 @@ class MenuHelper extends Helper
                 $pageUrl = $menu->nameOnly;
                 if ($menu->subMenues != null){
                     $parentName = $menu->displayName;
-                    foreach ($menu->subMenues as $subMenu){
-                        $pageUrl = $this->Url->build("/$pageUrl/$subMenu->nameOnly");
-                        $name = $subMenu->displayName;
-                        $html .= "<a href='$pageUrl'><div class='content-block'>";
-                        $html .= "<a href='$pageUrl'><h5>" . $name .'</h5></a>';
-                        $html .= "<span class='badges'><a href='$pageUrl'>" . $parentName .'</a></span>';
-                        $html .= '</div></a>';
-                    }
+                    $html .= $this->thumbTextMenuGenerator($pageUrl, $parentName, $menu->subMenues);
                 }
-
             }
             AppCacheManager::cache(self::HOME_PAGE_MENU_CACHE, $html);
         }
-        echo $html;
+        return $html;
     }
 }

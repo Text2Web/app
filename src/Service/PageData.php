@@ -16,6 +16,8 @@ class PageData
     public $topMenu;
     public $homeTopics;
     public $pageName;
+    public $parentURL = null;
+    public $parentName = null;
 
 
     public function getLayout()
@@ -81,6 +83,33 @@ class PageData
         $this->pageName = $pageName;
         return $this;
     }
+
+
+    public function getParentURL()
+    {
+        return $this->parentURL;
+    }
+
+
+    public function setParentURL($parentURL)
+    {
+        $this->parentURL = $parentURL;
+        return $this;
+    }
+
+
+    public function getParentName()
+    {
+        return $this->parentName;
+    }
+
+
+    public function setParentName($parentName)
+    {
+        $this->parentName = $parentName;
+        return $this;
+    }
+
 
 
 

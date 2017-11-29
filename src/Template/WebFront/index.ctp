@@ -1,1 +1,1 @@
-<?= $this->Menu->getSubMenu($pageData->getHomeTopics()) ?>
+<?= $this->Menu->getThumbMenu($pageData) ?>

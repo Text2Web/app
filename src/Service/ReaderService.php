@@ -8,6 +8,7 @@
 
 namespace App\Service;
 
+use App\Utils\AppUtils;
 use App\Utils\FileAndDirectoryService;
 use App\Utils\PathResolver;
 
@@ -31,8 +32,11 @@ class ReaderService
             $pageData->setHomeTopics($this->getMenuList($contentRoot));
         }else if ($numberOfFragment === self::CHAPTER_PAGE){
             $pageData->setLayout(self::DEFAULT_LAYOUT);
+            $parent = $urlFragments[0];
             $path = PathResolver::getContentPathByArray($contentRoot, $urlFragments);
             $pageData->setHomeTopics($this->getMenuList($path));
+            $pageData->setParentURL($parent);
+            $pageData->setParentName(AppUtils::humanReadableName($parent));
         }else{
             $pageData->setLayout(self::TUTORIAL_LAYOUT);
 //            $pageData->setLeftMenu($this->getPage($contentRoot));
