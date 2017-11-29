@@ -39,7 +39,7 @@ class PathResolver
     public static function getContentPathByArray($rootPath, $pathArray = array()){
         $linkPath = "";
         foreach ($pathArray as $path){
-            $linkPath .= "*" . $path . DS;
+            $linkPath .= "*" . $path . "*" . DS;
         }
         $linkPath = $rootPath . DS . $linkPath;
         $path = glob($linkPath);

@@ -75,9 +75,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
             <nav class="collapse bd-links" id="bd-docs-nav">
                 <div class="bd-toc-item active">
-                    <a class="bd-toc-link" href="index.html">
+                    <ul class="nav bd-sidenav">
+                        <li>
+                            <a href="/docs/4.0/getting-started/introduction/">Introduction</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bd-toc-item active">
+                    <a class="bd-toc-link" href="/docs/4.0/getting-started/introduction/">
                         Getting started
                     </a>
+                    <ul class="nav bd-sidenav">
+                        <li>
+                            <a href="/docs/4.0/getting-started/introduction/">Introduction</a>
+                        </li>
+                       </ul>
                 </div>
             </nav>
 
