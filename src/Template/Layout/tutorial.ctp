@@ -36,6 +36,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 
     <?= $this->Html->script('jquery-3.2.1.min.js') ?>
+    <?= $this->Html->script('popper.min.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
 </head>
 
@@ -55,11 +56,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </a>
 
     <div class="navbar-nav-scroll">
-        <ul class="navbar-nav bd-navbar-nav flex-row">
-            <li class="nav-item">
-                <a class="nav-link " href="">Home</a>
-            </li>
-        </ul>
+        <?= $this->Menu->getTopNavItem() ?>
     </div>
 
 </header>

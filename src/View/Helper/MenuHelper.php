@@ -82,4 +82,42 @@ class MenuHelper extends Helper
         }
         return $html;
     }
+
+    public function getTopNavItem(){
+        $fileAndDirectoryService = new FileAndDirectoryService();
+        $menuList = $fileAndDirectoryService->getMenuList();
+        $html = AppCacheManager::read(self::MENU_CACHE);
+        if ($html === false) {
+            $url = $this->Url->build('/');
+            $html = '<ul class="navbar-nav bd-navbar-nav flex-row">';
+            $html.= '<li class="nav-item">';
+            $html.= "<a class='nav-link' href='$url'>Home</a>";
+            $html.= '</li>';
+            foreach ($menuList as $menu){
+                $parentName = $menu->displayName;
+                $parent = $menu->nameOnly;
+                $pageUrl = $this->Url->build('/' . $menu->nameOnly);
+                if ($menu->subMenues != null){
+                    $html .= "<li class='nav-item dropdown'>";
+                    $html .= "<a class='nav-link dropdown-toggle' href='$pageUrl' data-toggle='dropdown'>";
+                    $html .= "$parentName";
+                    $html .= "</a>";
+                    $html .= "<div class='dropdown-menu'>";
+                    foreach ($menu->subMenues as $subMenu){
+                        $pageUrl = $this->Url->build("/$parent/$subMenu->nameOnly");
+                        $html .= "<a class='dropdown-item' href='$pageUrl'>$subMenu->displayName</a>";
+                    }
+                    $html .= "</div>";
+                    $html .= "</li>";
+                }else{
+                    $html.= '<li class="nav-item">';
+                    $html.= "<a class='nav-link' href='$pageUrl'>$parentName</a>";
+                    $html.= '</li>';
+                }
+            }
+            $html .= '</ul>';
+            AppCacheManager::cache(self::MENU_CACHE, $html);
+        }
+        echo $html;
+    }
 }
