@@ -79,9 +79,7 @@ $cakeDescription = 'HMTMCSE';
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="repository-boxs scrollable-area">
                     <?= $this->fetch('content') ?>
-                </div>
             </div>
         </div>
     </div>

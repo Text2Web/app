@@ -50,10 +50,10 @@ class MenuHelper extends Helper
         foreach ($menuArray as $subMenu){
             $pageUrl = $this->Url->build("/$parentURL/$subMenu->nameOnly");
             $name = $subMenu->displayName;
-            $html .= "<a href='$pageUrl'><div class='content-block'>";
-            $html .= "<a href='$pageUrl'><h5>" . $name .'</h5></a>';
-            $html .= "<span class='badges'><a href='$pageUrl'>" . $parentName .'</a></span>';
-            $html .= '</div></a>';
+            $html .= "<div class='col-sm-6 remove-href-underline'><a href='$pageUrl'><div class='card mt-3'><div class='card-body'>";
+            $html .= "<h4 class='card-title'>" . $name .'</h4>';
+            $html .= "<div class='badges'><span class='card-subtitle text-muted'>" . $parentName .'</span></div>';
+            $html .= '</div></div></a></div>';
         }
         return $html;
     }

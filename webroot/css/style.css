@@ -101,12 +101,17 @@
 .media-left {
     margin-right: 10px;
 }
-.badges a {
+.remove-href-underline a{
+    text-decoration:none;
+}
+
+
+.badges span {
     display: inline-block;
     position: relative;
     padding-left: 15px;
 }
-.badges a:before {
+.badges span:before {
     content: "";
     position: absolute;
     top: 50%;
