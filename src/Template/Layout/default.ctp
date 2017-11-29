@@ -28,7 +28,7 @@ $cakeDescription = 'HMTMCSE';
 
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('font-awesome/font-awesome.min.css') ?>
+    <?= $this->Html->css('/font-awesome/css/font-awesome.min.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -43,21 +43,19 @@ $cakeDescription = 'HMTMCSE';
 <body>
 <section class="workstation-body">
     <div class="user-profile">
-        <div class="user-info">
-            <div class="user-profile-block  mb-2">
-                <?= $this->Html->image('user.jpg', ['alt' => 'User', 'class' => 'img-thumbnail']) ?>
+
+        <div class="card">
+            <?= $this->Html->image('hmtmcse.jpg', ['alt' => 'hmtmcse', 'class' => 'card-img-top', 'url' => '/']) ?>
+            <div class="card-body text-center">
+                <h4 class="card-title">H.M.Touhid Mia (HMTMCSE)</h4>
+                <span class="card-subtitle text-muted">Manager System & Research <br> Bit Mascot Pvt. Ltd.</span>
             </div>
-            <div class="user-about">
-                <h3 class=" mb-1">H.M. Touhid Mia</h3>
-                <p class="sub-name  mb-2"><a href="#">hmtmcse</a></p>
-                <p>There are many variations of passages of Lorem Ipsum available.</p>
-                <hr>
-            </div>
-            <div class="user-contact">
-                <ul class="lists">
-                    <li class="lists-item"><i class="fa fa-map-marker" aria-hidden="true"></i>Rampura, Dhaka-1219</li>
-                    <li class="lists-item"><i class="fa fa-link" aria-hidden="true"></i><a href="#">www.yourwebsite.com</a></li>
-                </ul>
+            <div class="card-body text-center">
+                <a href="https://www.facebook.com/hmtmcsecom" class="card-link"><i class="fa  fa-facebook-official fa-lg"></i></a>
+                <a href="https://plus.google.com/communities/104475733572137131423" class="card-link"><i class="fa  fa-google-plus-official fa-lg"></i></a>
+                <a href="https://www.linkedin.com/in/hmtmcse/" class="card-link"><i class="fa fa-linkedin fa-lg"></i></a>
+                <a href="https://github.com/hmtmcse" class="card-link"><i class="fa fa-github fa-lg"></i></a>
+                <a href="https://www.youtube.com/channel/UCdm33qs7-m6n5Bw5gyFvuPQ" class="card-link"><i class="fa fa-youtube fa-lg"></i></a>
             </div>
         </div>
     </div>
