@@ -18,7 +18,7 @@ class ReaderService
     const CHAPTER_PAGE = 1;
     const TOPIC_PAGE = 1;
     const HOME_PAGE = 0;
-    const DEFAULT_LAYOUT = "default";
+    const DEFAULT_LAYOUT = "card";
     const TUTORIAL_LAYOUT = "tutorial";
 
     public function getPage($url){

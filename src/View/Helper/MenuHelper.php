@@ -19,69 +19,6 @@ class MenuHelper extends Helper
     const MENU_CACHE = "MENU_CACHE";
     const HOME_PAGE_MENU_CACHE = "HOME_PAGE_MENU_CACHE";
 
-    public function getMenu()
-    {
-        $fileAndDirectoryService = new FileAndDirectoryService();
-        $menuList = $fileAndDirectoryService->getMenuList();
-        $html = AppCacheManager::read(self::MENU_CACHE);
-        if ($html === false) {
-            $url = $this->Url->build('/assets/images');
-            $html = "";
-            foreach ($menuList as $menu){
-                $name = $menu->displayName;
-                $parent = $menu->nameOnly;
-                $urlImage = "$url/$parent/$parent" . ".png";
-                $pageUrl = $this->Url->build("/$parent");
-                $html .= "<a href='$pageUrl'>";
-                $html .= '<div class="content-block media">';
-                $html .= '<div class="media-body text-center">';
-                $html .= '<img src= "' . $urlImage .'" class="img-thumbnail"  alt= " ' . $name . '"/>';
-                $html .= '<h5>' . $name .'</h5>';
-                $html .= '</div></div></a>';
-            }
-            AppCacheManager::cache(self::MENU_CACHE, $html);
-        }
-        echo $html;
-    }
-
-
-    public function thumbTextMenuGenerator($parentURL, $parentName, $menuArray){
-        $html = "";
-        foreach ($menuArray as $subMenu){
-            $pageUrl = $this->Url->build("/$parentURL/$subMenu->nameOnly");
-            $name = $subMenu->displayName;
-            $html .= "<div class='col-sm-6 remove-href-underline'><a href='$pageUrl'><div class='card mt-3'><div class='card-body'>";
-            $html .= "<h4 class='card-title'>" . $name .'</h4>';
-            $html .= "<div class='badges'><span class='card-subtitle text-muted'>" . $parentName .'</span></div>';
-            $html .= '</div></div></a></div>';
-        }
-        return $html;
-    }
-
-    public function getThumbMenu($pageData){
-        if ($pageData->getParentURL() !== null && $pageData->getParentName() !== null){
-            echo $this->thumbTextMenuGenerator($pageData->getParentURL(), $pageData->getParentName(), $pageData->getHomeTopics());
-        }else{
-            echo $this->getSubMenu($pageData->getHomeTopics());
-        }
-    }
-
-    public function getSubMenu($menuList)
-    {
-        $html = AppCacheManager::read(self::HOME_PAGE_MENU_CACHE);
-        if ($html === false) {
-            $html = "";
-            foreach ($menuList as $menu){
-                $pageUrl = $menu->nameOnly;
-                if ($menu->subMenues != null){
-                    $parentName = $menu->displayName;
-                    $html .= $this->thumbTextMenuGenerator($pageUrl, $parentName, $menu->subMenues);
-                }
-            }
-            AppCacheManager::cache(self::HOME_PAGE_MENU_CACHE, $html);
-        }
-        return $html;
-    }
 
     public function getTopNavItem(){
         $fileAndDirectoryService = new FileAndDirectoryService();
@@ -117,6 +54,71 @@ class MenuHelper extends Helper
             }
             $html .= '</ul>';
             AppCacheManager::cache(self::MENU_CACHE, $html);
+        }
+        echo $html;
+    }
+
+    private function getColor($index){
+        $color = [
+            [
+                "header-text" => "text-white",
+                "bg" => "bg-success",
+                "border" => "border-success",
+            ],
+            [
+                "header-text" => "text-white",
+                "bg" => "bg-primary",
+                "border" => "border-primary",
+            ],
+            [
+                "header-text" => "text-white",
+                "bg" => "bg-secondary",
+                "border" => "border-secondary",
+            ],
+            [
+                "header-text" => "text-white",
+                "bg" => "bg-dark",
+                "border" => "border-dark",
+            ],
+            [
+                "header-text" => "text-white",
+                "bg" => "bg-danger",
+                "border" => "border-danger",
+            ],
+            [
+                "header-text" => "text-white",
+                "bg" => "bg-warning",
+                "border" => "border-warning",
+            ]
+        ];
+        return $color[$index];
+    }
+
+    public function getHomeMenu(){
+        $fileAndDirectoryService = new FileAndDirectoryService();
+        $menuList = $fileAndDirectoryService->getMenuList();
+        $html = AppCacheManager::read(self::HOME_PAGE_MENU_CACHE);
+        if ($html === false) {
+            $html = '';
+            $colorIndex = 0;
+            foreach ($menuList as $menu){
+                if ($menu->subMenues != null){
+                    $parentName = $menu->displayName;
+                    $parent = $menu->nameOnly;
+                    $color = $this->getColor($colorIndex);
+                    $html .= "<div class='card " . $color['bg'] . " " . $color['border'] . " text-center'>";
+                    $html .= "<h4 class='card-header " . $color['header-text'] . "'>" . $parentName . "</h4>";
+                    $html .= "<div class='list-group list-group-flush'>";
+                    foreach ($menu->subMenues as $subMenu){
+                        $pageUrl = $this->Url->build("/$parent/$subMenu->nameOnly");
+                        $name = $subMenu->displayName;
+                        $html .= "<a href='$pageUrl' class=' list-group-item'><h5>$name</h5></a>";
+                    }
+                    $html .= "</div></div>";
+                    $colorIndex = $colorIndex > 6 ? 0 : $colorIndex + 1;
+                }
+            }
+            AppCacheManager::cache(self::HOME_PAGE_MENU_CACHE, $html);
         }
         echo $html;
     }
