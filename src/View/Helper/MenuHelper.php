@@ -115,7 +115,7 @@ class MenuHelper extends Helper
                         $html .= "<a href='$pageUrl' class=' list-group-item'><h5>$name</h5></a>";
                     }
                     $html .= "</div></div>";
-                    $colorIndex = $colorIndex > 6 ? 0 : $colorIndex + 1;
+                    $colorIndex = $colorIndex > 4 ? 0 : $colorIndex + 1;
                 }
             }
             AppCacheManager::cache(self::HOME_PAGE_MENU_CACHE, $html);
