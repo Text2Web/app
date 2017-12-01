@@ -13,9 +13,6 @@
         </nav>
     </div>
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
-<!--        --><?php //$this->set('title', "Alu") ?>
-
-        <h1 class="bd-title" id="content">Introduction</h1>
-        <p class="bd-lead">Get started with Bootstrap, the world's most popular framework for building responsive, mobile-first sites, with the Bootstrap CDN and a template starter page.</p>
+        <?php $this->UI->getPageContent($pageData)?>
     </main>
 </div>

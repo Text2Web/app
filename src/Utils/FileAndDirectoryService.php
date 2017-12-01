@@ -19,7 +19,9 @@ class FileAndDirectoryService
         if(file_exists($filePath)){
             $content = fopen($filePath, "r");
             if(filesize($filePath) && $content){
-                return fread($content, filesize($filePath));
+                $fileContent = fread($content, filesize($filePath));
+                fclose($content);
+                return $fileContent;
             }
             fclose($content);
             return null;
@@ -91,5 +93,9 @@ class FileAndDirectoryService
 
     public function getMenuList(){
         return $this->scanMenuPool(PathResolver::getContentRoot());
+    }
+
+    public static function isFile($location){
+        return is_file($location);
     }
 }

@@ -19,6 +19,7 @@ class PageData
     public $parentURL = null;
     public $parentName = null;
     public $chapter;
+    public $urlFragments;
 
 
     public function getLayout()
@@ -124,10 +125,17 @@ class PageData
         return $this;
     }
 
+    public function getUrlFragments()
+    {
+        return $this->urlFragments;
+    }
 
 
-
-
+    public function setUrlFragments($urlFragments)
+    {
+        $this->urlFragments = $urlFragments;
+        return $this;
+    }
 
 
 }

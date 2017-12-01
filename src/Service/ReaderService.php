@@ -27,6 +27,7 @@ class ReaderService
         $urlFragments = empty($url)? array() : explode("/", $url);
         $pageData = new PageData();
         $numberOfFragment = count($urlFragments);
+        $pageData->setUrlFragments($urlFragments);
         if ($numberOfFragment === self::HOME_PAGE){
             $pageData->setLayout(self::DEFAULT_LAYOUT);
             $pageData->setHomeTopics($this->getMenuList($contentRoot));
@@ -50,6 +51,24 @@ class ReaderService
     public function getMenuList($location){
         $fileDirectoryService = new FileAndDirectoryService();
         return $fileDirectoryService->scanMenuPool($location);
+    }
+
+    public function getPageContent($pageData){
+        $contentRoot = PathResolver::getContentRoot();
+        $path = PathResolver::getContentPathByArray($contentRoot, $pageData->getUrlFragments());
+        $fileAndDirectorySerive = new FileAndDirectoryService();
+        $content = "<h1 class='text-center'>Requested Content Not Available.</h1>";
+        if (FileAndDirectoryService::isFile($path)){
+            $mdContent = $fileAndDirectorySerive->read($path);
+            $parsedown = new Parsedown();
+            $content = $parsedown->text($mdContent);
+        }
+//        echo "<pre>";
+//        echo $path;
+//        echo "<br>";
+//        print_r($pageData);
+
+        return $content;
     }
 
 }

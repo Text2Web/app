@@ -417,6 +417,7 @@ class Parsedown
             $Block = array(
                 'char' => $Line['text'][0],
                 'element' => array(
+                    'attributes' => array('class' => 'prettyprint'),
                     'name' => 'pre',
                     'handler' => 'element',
                     'text' => $Element,
@@ -879,6 +880,7 @@ class Parsedown
                 'alignments' => $alignments,
                 'identified' => true,
                 'element' => array(
+                    'attributes' => array('class' => 'table'),
                     'name' => 'table',
                     'handler' => 'elements',
                 ),

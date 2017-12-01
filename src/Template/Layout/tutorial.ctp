@@ -30,7 +30,8 @@ $cakeDescription = 'HMTMCSE';
 
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('docs.min.css') ?>
-    <?= $this->Html->css('font-awesome/font-awesome.min.css') ?>
+    <?= $this->Html->css('/font-awesome/font-awesome.min.css') ?>
+    <?= $this->Html->css('/prettify/prettify.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -39,10 +40,11 @@ $cakeDescription = 'HMTMCSE';
     <?= $this->Html->script('jquery-3.2.1.min.js') ?>
     <?= $this->Html->script('popper.min.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
+    <?= $this->Html->script('/prettify/prettify.js') ?>
 </head>
 
 
-<body>
+<body onload="PR.prettyPrint()">
 
 <a id="skippy" class="sr-only sr-only-focusable" href="#content">
     <div class="container">

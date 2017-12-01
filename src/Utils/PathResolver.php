@@ -42,7 +42,7 @@ class PathResolver
             $linkPath .= "*" . $path . "*" . DS;
         }
         $linkPath = $rootPath . DS . $linkPath;
-        $path = glob($linkPath);
+        $path = glob(rtrim($linkPath, DS));
         if (count($path) != 0){
             return  rtrim($path[0],DS);
         }
@@ -61,6 +61,10 @@ class PathResolver
     public static function getDefaultThumbs()
     {
         return self::getWebRoot("img" . DS . "default_thumbs.jpg");
+    }
+
+    public static function concatPath($prefix, $postfix) {
+        return $prefix . DS . $postfix;
     }
 
 }
