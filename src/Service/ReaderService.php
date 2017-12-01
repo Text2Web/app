@@ -39,14 +39,12 @@ class ReaderService
             $pageData->setParentName(AppUtils::humanReadableName($parent));
         }else{
             $pageData->setLayout(self::TUTORIAL_LAYOUT);
-//            $pageData->setLeftMenu($this->getPage($contentRoot));
+            $path = PathResolver::getContentPathByArray($contentRoot, [$urlFragments[0],$urlFragments[1]]);
+            $parent = $urlFragments[0] . "/" . $urlFragments[1];
+            $pageData->setChapter($this->getMenuList($path));
+            $pageData->setParentURL($parent);
         }
-
-//        die();
         return $pageData;
-
-//        echo $path;
-//        print_r($urlFragments);
     }
 
     public function getMenuList($location){

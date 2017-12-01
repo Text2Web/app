@@ -20,6 +20,38 @@ class MenuHelper extends Helper
     const HOME_PAGE_MENU_CACHE = "HOME_PAGE_MENU_CACHE";
 
 
+    private function leftMenuGenerator($menuList, $parentURL, $isNested = false){
+        $spacing = "";
+        if ($isNested){
+            $spacing = "&nbsp;&nbsp;&nbsp;";
+        }
+        $html = "";
+        foreach ($menuList as $menu){
+            $subParentURL = "$parentURL/$menu->nameOnly";
+            $url =  $menu->subMenues === null ? $this->Url->build("/$subParentURL") : "#";
+            $displayName = $menu->displayName;
+            $html .= "<li><a href='$url'><h6>$spacing $displayName</h6></a></li>";
+            if ($menu->subMenues !== null){
+                $html .= $this->leftMenuGenerator($menu->subMenues, $subParentURL, true);
+            }
+        }
+        return $html;
+    }
+
+    public function getLeftMenu($pageData){
+        $parentURL = $pageData->getParentURL();
+        $html = AppCacheManager::read($parentURL);
+        if ($html === false) {
+            $html = "<div class='bd-toc-item active'>";
+            $html .= "<ul class='nav bd-sidenav'>";
+            $html .= $this->leftMenuGenerator($pageData->getChapter(), $parentURL);
+            $html .= "</ul></div>";
+            AppCacheManager::cache($parentURL, $html);
+        }
+        echo $html;
+    }
+
+
     public function getTopNavItem(){
         $fileAndDirectoryService = new FileAndDirectoryService();
         $menuList = $fileAndDirectoryService->getMenuList();

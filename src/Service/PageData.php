@@ -18,6 +18,7 @@ class PageData
     public $pageName;
     public $parentURL = null;
     public $parentName = null;
+    public $chapter;
 
 
     public function getLayout()
@@ -107,6 +108,19 @@ class PageData
     public function setParentName($parentName)
     {
         $this->parentName = $parentName;
+        return $this;
+    }
+
+
+    public function getChapter()
+    {
+        return $this->chapter;
+    }
+
+
+    public function setChapter($chapter)
+    {
+        $this->chapter = $chapter;
         return $this;
     }
 
