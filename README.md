@@ -58,3 +58,9 @@ bin/cake migrations seed -p ManagePackage
 **References**
 1. Migration: https://book.cakephp.org/3.0/en/migrations.html
 2. Phinx Data Type: http://docs.phinx.org/en/latest/migrations.html#the-save-method
+
+
+**Page Meta Information**
+[//]:# (TITLE ::: Java Introduction)
+[//]:# (DESCRIPTION ::: Java Introduction)
+[//]:# (KEYWORD ::: Java Introduction)

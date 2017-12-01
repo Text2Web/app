@@ -16,7 +16,7 @@ class FileAndDirectoryService
 
 
     public function read($filePath){
-        if(file_exists($filePath)){
+        if(file_exists($filePath) && self::isFile($filePath)){
             $content = fopen($filePath, "r");
             if(filesize($filePath) && $content){
                 $fileContent = fread($content, filesize($filePath));

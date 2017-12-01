@@ -21,6 +21,9 @@ class UIHelper extends Helper
     public function getPageContent($pageData){
         $readerService = new ReaderService();
         $pageContentData = $readerService->getPageContent($pageData);
+        $this->getView()->set("title", "HMTMCSE | " . $pageContentData->title);
+        $this->getView()->set("keyword", $pageContentData->metaKeyword);
+        $this->getView()->set("metaDescription", $pageContentData->metaDescription);
         echo $pageContentData->pageContent;
     }
 
