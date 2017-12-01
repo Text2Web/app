@@ -1,4 +1,4 @@
-
+<?php if ($pageData->getLayout() === "tutorial"):?>
 <div class="row flex-xl-nowrap">
     <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
         <form class="bd-search d-flex align-items-center">
@@ -16,3 +16,4 @@
         <?php $this->UI->getPageContent($pageData)?>
     </main>
 </div>
+<?php endif;?>

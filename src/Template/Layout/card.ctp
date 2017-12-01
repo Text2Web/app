@@ -1,6 +1,3 @@
-<?php
-$cakeDescription = 'HMTMCSE';
-?>
 <!DOCTYPE html>
 <html>
 <head>
