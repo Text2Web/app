@@ -21,7 +21,9 @@ class ContentUpdateHelper
     public function writeToFile($text){
         $location = PathResolver::getUpdateTemp();
         FileAndDirectoryService::notExistCreateDir($location);
-        file_put_contents( $location . DS . uniqid() . ".json", $_POST['payload']);
+        file_put_contents( $location . DS . uniqid() . ".json",$text);
+        file_put_contents( $location . DS . uniqid() . ".json",$_POST);
+        file_put_contents( $location . DS . uniqid() . ".json",$_GET);
     }
 
     public function writeUpdateLog($request){
