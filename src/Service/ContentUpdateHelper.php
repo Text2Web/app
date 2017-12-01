@@ -26,7 +26,7 @@ class ContentUpdateHelper
 
     public function writeUpdateLog($request){
         if (!empty($request->getQuery("authKey")) && $request->getQuery("authKey") == $this->authKey){
-            $this->writeToFile($request->getData());
+            $this->writeToFile(json_encode($request->getData()));
         }
     }
 
