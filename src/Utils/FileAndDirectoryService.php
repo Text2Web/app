@@ -105,7 +105,9 @@ class FileAndDirectoryService
 
     public static function notExistCreateDir($location){
         if (!file_exists($location)){
-            mkdir($location,0755, true);
+           if (!mkdir($location,0755, true)){
+               echo "Unable to create Directory";
+           }
         }
     }
 }
