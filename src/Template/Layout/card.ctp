@@ -7,9 +7,10 @@ $cakeDescription = 'HMTMCSE';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?= isset($title) ? $title : "...::: HMTMCSE :::..." ?>
     </title>
+    <meta name="Description" content="<?= isset($metaDescription) ? $metaDescription : "" ?>"/>
+    <meta name="Description" content="<?= isset($keyword) ? $keyword : "" ?>"/>
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('bootstrap.min.css') ?>

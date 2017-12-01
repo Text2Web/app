@@ -40,7 +40,7 @@ class MenuHelper extends Helper
 
     public function getLeftMenu($pageData){
         $parentURL = $pageData->getParentURL();
-        $html = AppCacheManager::read($parentURL);
+        $html = AppCacheManager::read($parentURL ? $parentURL : "empty");
         if ($html === false) {
             $html = "<div class='bd-toc-item active'>";
             $html .= "<ul class='nav bd-sidenav'>";
