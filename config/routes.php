@@ -36,7 +36,10 @@ Router::scope('/manage-me', function (RouteBuilder $routes) {
 });
 
 
+
 Router::scope('/', function (RouteBuilder $routes) {
+    $routes->connect('/web-hook', ['controller' => 'WebHook', 'action' => '*']);
+    $routes->connect('/web-hook/pull', ['controller' => 'WebHook', 'action' => 'pull']);
     $routes->connect('/*', ['controller' => 'WebFront', 'action' => 'index']);
     $routes->fallbacks(DashedRoute::class);
 });

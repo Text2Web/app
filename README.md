@@ -47,6 +47,12 @@ bin/cake migrations seed
 bin/cake bake plugin PluginName
 ```
 
+**Create Controller**
+
+```
+bin/cake bake controller WebHook
+```
+
 bin/cake migrations create migration_name --plugin PluginName
 bin/cake bake all --plugin PluginName
 bin/cake migrations migrate -p ManagePackage
