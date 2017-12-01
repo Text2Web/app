@@ -98,4 +98,8 @@ class FileAndDirectoryService
     public static function isFile($location){
         return is_file($location);
     }
+
+    public static function isDirectory($location){
+        return is_dir($location);
+    }
 }

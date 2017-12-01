@@ -53,21 +53,30 @@ class ReaderService
         return $fileDirectoryService->scanMenuPool($location);
     }
 
-    public function getPageContent($pageData){
-        $contentRoot = PathResolver::getContentRoot();
-        $path = PathResolver::getContentPathByArray($contentRoot, $pageData->getUrlFragments());
-        $fileAndDirectorySerive = new FileAndDirectoryService();
-        $content = "<h1 class='text-center'>Requested Content Not Available.</h1>";
-        if (FileAndDirectoryService::isFile($path)){
-            $mdContent = $fileAndDirectorySerive->read($path);
+    private function getMarkdownContent($path){
+        $content = "";
+        $fileAndDirectorySerivice = new FileAndDirectoryService();
+        $mdContent = $fileAndDirectorySerivice->read($path);
+        if (!empty($mdContent)){
             $parsedown = new Parsedown();
             $content = $parsedown->text($mdContent);
         }
-//        echo "<pre>";
-//        echo $path;
-//        echo "<br>";
-//        print_r($pageData);
+        return $content;
+    }
 
+    public function getPageContent($pageData){
+        $contentRoot = PathResolver::getContentRoot();
+        $path = PathResolver::getContentPathByArray($contentRoot, $pageData->getUrlFragments());
+        $content = "<h1 class='text-center'>Content Not Available.</h1>";
+        if (FileAndDirectoryService::isFile($path)){
+            $content = $this->getMarkdownContent($path);
+        }elseif (FileAndDirectoryService::isDirectory($path)){
+            if (isset($pageData->chapter[0])){
+                $chapter =  $pageData->chapter;
+                $path = PathResolver::concatPath($path, $chapter[0]->fileName);
+                $content = $this->getMarkdownContent($path);
+            }
+        }
         return $content;
     }
 
