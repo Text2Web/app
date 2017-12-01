@@ -51,7 +51,18 @@ $cakeDescription = 'HMTMCSE';
             <div class="search-part container-fluid">
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="exampleInputinput" aria-describedby="searchHelp" placeholder="Search Here">
+                        <script>
+                            (function() {
+                                var cx = '011600571897857392745:9q_qj0kepdw';
+                                var gcse = document.createElement('script');
+                                gcse.type = 'text/javascript';
+                                gcse.async = true;
+                                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(gcse, s);
+                            })();
+                        </script>
+                        <gcse:search></gcse:search>
                     </div>
                 </form>
             </div>
