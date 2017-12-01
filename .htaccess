@@ -25,10 +25,6 @@
   ExpiresByType text/css                  "access plus 1 week"
   ExpiresByType application/javascript    "access plus 1 week"
   ExpiresByType text/javascript           "access plus 1 week"
-<IfModule mod_headers.c>
-  Header append Cache-Control "public
-  Header set Connection keep-alive
-</IfModule>
 </IfModule>
 
 <Ifmodule mod_deflate.c>
