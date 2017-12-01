@@ -13,10 +13,15 @@ class PathResolver
 {
     private static $CONTENT_DIR = "content";
     private static $WEB_ROOT = "webroot";
+    private static $UPDATE_TEMP_LOG = "updateTempLog";
 
 
     public static function getContentRoot() {
         return ROOT . DS . self::$CONTENT_DIR;
+    }
+
+    public static function getUpdateTemp() {
+        return ROOT . DS . self::$UPDATE_TEMP_LOG;
     }
 
     public static function getWebRoot($path = "")

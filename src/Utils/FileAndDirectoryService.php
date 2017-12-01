@@ -102,4 +102,10 @@ class FileAndDirectoryService
     public static function isDirectory($location){
         return is_dir($location);
     }
+
+    public static function notExistCreateDir($location){
+        if (!file_exists($location)){
+            mkdir($location,0755, true);
+        }
+    }
 }
