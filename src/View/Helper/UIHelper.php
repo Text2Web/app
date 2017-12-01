@@ -20,7 +20,8 @@ class UIHelper extends Helper
 
     public function getPageContent($pageData){
         $readerService = new ReaderService();
-        echo $readerService->getPageContent($pageData);
+        $pageContentData = $readerService->getPageContent($pageData);
+        echo $pageContentData->pageContent;
     }
 
 
