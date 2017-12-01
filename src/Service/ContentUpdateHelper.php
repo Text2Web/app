@@ -21,13 +21,14 @@ class ContentUpdateHelper
     public function writeToFile($text){
         $location = PathResolver::getUpdateTemp();
         FileAndDirectoryService::notExistCreateDir($location);
+        echo
         file_put_contents( $location . DS . uniqid() . ".json",$text);
         file_put_contents( $location . DS . uniqid() . ".json",$_POST);
         file_put_contents( $location . DS . uniqid() . ".json",$_GET);
     }
 
     public function writeUpdateLog($request){
-        if (!empty($request->getQuery("authKey")) && $request->getQuery("authKey") == $this->authKey && !empty($request->getData('payload'))){
+        if (!empty($request->getQuery("authKey")) && $request->getQuery("authKey") == $this->authKey){
             $this->writeToFile($request->getData('payload'));
         }
     }
