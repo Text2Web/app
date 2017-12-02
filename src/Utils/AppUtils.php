@@ -20,4 +20,25 @@ class AppUtils
         return $realName;
     }
 
+    public static function startsWith($text, $start)
+    {
+        $length = strlen($start);
+        return (substr($text, 0, $length) === $start);
+    }
+
+    public static function endsWith($text, $end)
+    {
+        $length = strlen($end);
+
+        return $length === 0 ||
+            (substr($text, -$length) === $end);
+    }
+
+    public static function str_replace_first($find, $replace, $text)
+    {
+        $find = '/'.preg_quote($find, '/').'/';
+        return preg_replace($find, $replace, $text, 1);
+    }
+
+
 }

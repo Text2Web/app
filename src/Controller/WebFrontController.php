@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 
+use App\Service\ContentUpdateHelper;
 use App\Service\ReaderService;
 
 class WebFrontController extends AppController
@@ -17,6 +18,10 @@ class WebFrontController extends AppController
 
     public function index()
     {
+
+        ContentUpdateHelper::parseGitDiff();
+        die();
+
         $this->set("title", "HMTMCSE | Welcome");
         $this->set("keyword", "Java, PHP, css, js, JavaScript, centos");
         $this->set("metaDescription", "Tutorial for beginner, Java, php, css, js, JavaScript");
