@@ -39,8 +39,6 @@ class ContentUpdateHelper
         $location = PathResolver::getUpdateTemp() . DS . "git_log.txt";
         $fileAndDirectoryService = new FileAndDirectoryService();
         $logContent = $fileAndDirectoryService->read($location);
-
-        echo "<pre>";
         preg_match_all("/diff\s+--git\s+(.+)\n(.+)/", $logContent, $match);
         $gitUpdateLogs = array();
         if (is_array($match)){
@@ -71,12 +69,7 @@ class ContentUpdateHelper
                 }
             }
         }
-        print_r($gitUpdateLogs);
-
-        echo "<br><br>";
-//        echo $logContent;
-
-
+        return $gitUpdateLogs;
     }
 
 
