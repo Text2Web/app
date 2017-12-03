@@ -9,11 +9,8 @@
 namespace App\Controller;
 
 
-use App\Service\ContentUpdateService;
 use App\Service\ReaderService;
-use App\Utils\FileAndDirectoryService;
-use App\Utils\HttpConnection;
-use App\Utils\PathResolver;
+
 
 class WebFrontController extends AppController
 {
