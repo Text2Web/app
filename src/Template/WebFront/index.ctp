@@ -1,5 +1,7 @@
 <?php if ($pageData->getLayout() === "tutorial"):?>
 <div class="row flex-xl-nowrap">
+
+    <?php if (count($pageData->getChapter()) != 0): ?>
     <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
         <form class="bd-search d-flex align-items-center">
             <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
@@ -12,6 +14,8 @@
             <?= $this->Menu->getLeftMenu($pageData) ?>
         </nav>
     </div>
+    <?php endif; ?>
+
     <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content" role="main">
         <?php $this->UI->getPageContent($pageData)?>
     </main>
