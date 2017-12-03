@@ -11,9 +11,10 @@ namespace App\Service;
 
 use App\Utils\AppUtils;
 use App\Utils\FileAndDirectoryService;
+use App\Utils\HttpConnection;
 use App\Utils\PathResolver;
 
-class ContentUpdateHelper
+class ContentUpdateService
 {
 
     private $authKey = "54a1800736f63d51649038b5a43ed1cd4cf3877f1ac9c";
@@ -22,11 +23,35 @@ class ContentUpdateHelper
     const DELETE = "DELETE";
     const INVALID = "INVALID";
 
+    public function scanLogDirAndDownloadDiff(){
+        $fileAndDirectoryService = new FileAndDirectoryService();
+        $files = $fileAndDirectoryService->scanDirectory(PathResolver::getUpdateTemp(), false, "json");
+        foreach ($files as $file){
+            $json = $fileAndDirectoryService->getJsonFromFile($file->path);
+            if (isset($json->push->changes)){
+                foreach ($json->push->changes as $change){
+                    if ($change->links->diff->href){
+                        $headers = array(
+                            'Content-Type:application/json',
+                            'Authorization: Basic '. base64_encode("user:pass")
+                        );
+                        $httpResponse = HttpConnection::makeCurlCall($change->links->diff->href, "GET", null, null, $headers);
+                        if ($httpResponse["code"] === 200){
+                            $fileChanged = $this->parseGitDiff($httpResponse["response"]);
+                            if (count($fileChanged) !== 0){
+                                $this->writeToFile(json_encode($fileChanged), ".git");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-    public function writeToFile($text){
+    public function writeToFile($text, $extension = ".json"){
         $location = PathResolver::getUpdateTemp();
         FileAndDirectoryService::notExistCreateDir($location);
-        file_put_contents( $location . DS . uniqid() . "_data.json",$text);
+        file_put_contents( $location . DS . uniqid() . $extension, $text);
     }
 
     public function writeUpdateLog($request){
@@ -35,10 +60,7 @@ class ContentUpdateHelper
         }
     }
 
-    public static function parseGitDiff(){
-        $location = PathResolver::getUpdateTemp() . DS . "git_log.txt";
-        $fileAndDirectoryService = new FileAndDirectoryService();
-        $logContent = $fileAndDirectoryService->read($location);
+    public function parseGitDiff($logContent){
         preg_match_all("/diff\s+--git\s+(.+)\n(.+)/", $logContent, $match);
         $gitUpdateLogs = array();
         if (is_array($match)){

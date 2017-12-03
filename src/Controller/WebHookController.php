@@ -2,13 +2,13 @@
 namespace App\Controller;
 
 
-use App\Service\ContentUpdateHelper;
+use App\Service\ContentUpdateService;
 
 class WebHookController extends AppController
 {
 
     public function pull(){
-        $contentUpdate = new ContentUpdateHelper();
+        $contentUpdate = new ContentUpdateService();
         $contentUpdate->writeUpdateLog($this->request);
         echo "Added";
         die();

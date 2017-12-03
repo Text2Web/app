@@ -15,6 +15,15 @@ class FileAndDirectoryService
 {
 
 
+    public function getJsonFromFile($location){
+        $text = $this->read($location);
+        if ($text === null){
+            return null;
+        }else{
+            return json_decode($text);
+        }
+    }
+
     public function read($filePath){
         if(file_exists($filePath) && self::isFile($filePath)){
             $content = fopen($filePath, "r");
@@ -51,6 +60,36 @@ class FileAndDirectoryService
         $explodeDot = explode('.', $splitString);
         $realName = isset($explodeDot[1])?$explodeDot[1]:$name;
         return $realName;
+    }
+
+    public function scanDirectory($location, $recursive = false, $extension = null){
+
+        $list = array();
+        $fileData = new stdClass();
+        $fileData->name = "";
+        $fileData->isDirectory = "";
+        $fileData->path = "";
+
+        if (file_exists($location)){
+        foreach (new DirectoryIterator($location) as $fileInfo) {
+            if ($fileInfo->isDot()){continue;}
+            if ($extension === null || $fileInfo->getExtension() === $extension){
+                $fileData = new stdClass();
+                if ($fileInfo->isDir() && $recursive){
+                    $this->scanDirectory($fileInfo->getPathname(), $recursive);
+                }
+                if ($fileInfo->isDir()){
+                    $fileData->isDirectory = true;
+                }elseif ($fileInfo->isFile()){
+                    $fileData->isDirectory = false;
+                }
+                $fileData->name = $fileInfo->getFilename();
+                $fileData->path = $fileInfo->getPathname();
+                array_push($list, $fileData);
+            }
+        }
+        }
+        return $list;
     }
 
     public function scanMenuPool($location)

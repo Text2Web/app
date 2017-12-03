@@ -9,8 +9,11 @@
 namespace App\Controller;
 
 
-use App\Service\ContentUpdateHelper;
+use App\Service\ContentUpdateService;
 use App\Service\ReaderService;
+use App\Utils\FileAndDirectoryService;
+use App\Utils\HttpConnection;
+use App\Utils\PathResolver;
 
 class WebFrontController extends AppController
 {
@@ -18,6 +21,13 @@ class WebFrontController extends AppController
 
     public function index()
     {
+
+        echo "<pre>";
+        $x = new ContentUpdateService();
+        $x->scanLogDirAndDownloadDiff();
+
+        die();
+
         $this->set("title", "HMTMCSE | Welcome");
         $this->set("keyword", "Java, PHP, css, js, JavaScript, centos");
         $this->set("metaDescription", "Tutorial for beginner, Java, php, css, js, JavaScript");
