@@ -22,8 +22,7 @@
                 <div class="fb-share-button"
                      data-href="<?= $pageURL ?>"
                      data-layout="button_count" data-size="small"
-                     data-mobile-iframe="true">
-                    Share</div>
+                     data-mobile-iframe="true"></div>
 
                 <g:plus action="share"></g:plus>
             </div>

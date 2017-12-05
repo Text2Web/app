@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Service\ReaderService;
+use App\Utils\HttpConnection;
 use Cake\Routing\Router;
 
 
@@ -20,6 +21,10 @@ class WebFrontController extends AppController
 
     public function index()
     {
+
+        HttpConnection::downloadFile();
+        die();
+
         $this->set("title", "HMTMCSE | Welcome");
         $this->set("keyword", "Java, PHP, css, js, JavaScript, centos");
         $this->set("metaDescription", "Tutorial for beginner, Java, php, css, js, JavaScript");
