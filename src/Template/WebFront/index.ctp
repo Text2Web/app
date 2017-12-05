@@ -16,7 +16,30 @@
     <?php endif; ?>
 
     <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content" role="main">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="fb-share-button"
+                     data-href="http://www.hmtmcse.com/"
+                     data-layout="button_count" data-size="small"
+                     data-mobile-iframe="true">
+                    Share</div>
+
+                <g:plus action="share"></g:plus>
+            </div>
+        </div>
+
+
+
         <?php $this->UI->getPageContent($pageData)?>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="fb-comments" data-width="100%" data-href="http://www.hmtmcse.com/" data-numposts="5"></div>
+            </div>
+        </div>
+
+
     </main>
 </div>
 <?php endif;?>
