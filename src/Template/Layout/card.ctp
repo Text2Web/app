@@ -10,6 +10,18 @@
     <meta name="Description" content="<?= isset($keyword) ? $keyword : "" ?>"/>
     <?= $this->Html->meta('icon') ?>
 
+    <script>
+        (function() {
+            var cx = '011600571897857392745:9q_qj0kepdw';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = false;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
+
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('/font-awesome/css/font-awesome.min.css') ?>
@@ -48,17 +60,6 @@
             <div class="search-part container-fluid">
                 <form>
                     <div class="form-group">
-                        <script>
-                            (function() {
-                                var cx = '011600571897857392745:9q_qj0kepdw';
-                                var gcse = document.createElement('script');
-                                gcse.type = 'text/javascript';
-                                gcse.async = true;
-                                gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                                var s = document.getElementsByTagName('script')[0];
-                                s.parentNode.insertBefore(gcse, s);
-                            })();
-                        </script>
                         <gcse:search></gcse:search>
                     </div>
                 </form>

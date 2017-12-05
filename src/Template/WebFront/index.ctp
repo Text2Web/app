@@ -1,6 +1,5 @@
 <?php if ($pageData->getLayout() === "tutorial"):?>
 <div class="row flex-xl-nowrap">
-
     <?php if (count($pageData->getChapter()) != 0): ?>
     <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
         <form class="bd-search d-flex align-items-center">
