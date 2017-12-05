@@ -10,11 +10,13 @@ namespace App\Controller;
 
 
 use App\Service\ReaderService;
+use Cake\Routing\Router;
 
 
 class WebFrontController extends AppController
 {
 
+    public $helpers = ['Html','Url'];
 
     public function index()
     {
@@ -22,10 +24,15 @@ class WebFrontController extends AppController
         $this->set("keyword", "Java, PHP, css, js, JavaScript, centos");
         $this->set("metaDescription", "Tutorial for beginner, Java, php, css, js, JavaScript");
 
+        $requestedURL = $this->request->url;
+        $pageURL = Router::url($requestedURL, true);
+        $this->set("canonicalName", $pageURL);
+
         $readerService = new ReaderService();
-        $pageData = $readerService->getPage($this->request->url);
+        $pageData = $readerService->getPage($requestedURL);
         $this->viewBuilder()->setLayout($pageData->getLayout());
         $this->set('pageData', $pageData);
+        $this->set('pageURL', $pageURL);
     }
 
 }

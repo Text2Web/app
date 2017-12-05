@@ -25,6 +25,7 @@ $cakeDescription = 'HMTMCSE';
     </title>
     <meta name="Description" content="<?= isset($metaDescription) ? $metaDescription : "" ?>"/>
     <meta name="Description" content="<?= isset($keyword) ? $keyword : "" ?>"/>
+    <link rel="canonical" href="<?= isset($canonicalName) ? $canonicalName : "" ?>" />
 
     <?= $this->Html->meta('icon') ?>
 
