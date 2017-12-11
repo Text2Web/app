@@ -42,16 +42,6 @@ $cakeDescription = 'HMTMCSE';
     <?= $this->Html->script('popper.min.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
     <?= $this->Html->script('/prettify/prettify.js') ?>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=193886847837547';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-
 </head>
 
 
@@ -67,16 +57,30 @@ $cakeDescription = 'HMTMCSE';
     <a class="navbar-brand mr-0 mr-md-2" href="" >
         HMTMCSE
     </a>
-
-    <div class="navbar-nav-scroll">
-        <?= $this->Menu->getTopNavItem() ?>
-    </div>
-
 </header>
 
 
 <div class="container-fluid">
-    <?= $this->fetch('content') ?>
+
+    <div class="row flex-xl-nowrap">
+        <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+            <form class="bd-search d-flex align-items-center">
+                <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+                <button class="btn btn-link bd-search-docs-toggle d-md-none p-0 ml-3" type="button" data-toggle="collapse" data-target="#bd-docs-nav" aria-controls="bd-docs-nav" aria-expanded="false" aria-label="Toggle docs navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/></svg>
+                </button>
+            </form>
+            <nav class="collapse bd-links" id="bd-docs-nav">
+
+            </nav>
+        </div>
+        <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content" role="main">
+            <?= $this->fetch('content') ?>
+        </main>
+    </div>
+
+
+
 </div>
 </body>
 </html>

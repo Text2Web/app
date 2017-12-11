@@ -33,6 +33,7 @@ Router::scope('/assets', function (RouteBuilder $routes) {
 
 Router::scope('/manage-me', function (RouteBuilder $routes) {
     $routes->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'index']);
+    $routes->connect('/update_content', ['controller' => 'UpdateContent', 'action' => 'index']);
 });
 
 
