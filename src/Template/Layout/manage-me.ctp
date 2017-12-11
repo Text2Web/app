@@ -32,7 +32,6 @@ $cakeDescription = 'HMTMCSE';
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('docs.min.css') ?>
     <?= $this->Html->css('/font-awesome/font-awesome.min.css') ?>
-    <?= $this->Html->css('/prettify/prettify.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -41,11 +40,10 @@ $cakeDescription = 'HMTMCSE';
     <?= $this->Html->script('jquery-3.2.1.min.js') ?>
     <?= $this->Html->script('popper.min.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
-    <?= $this->Html->script('/prettify/prettify.js') ?>
 </head>
 
 
-<body onload="PR.prettyPrint()">
+<body>
 
 <a id="skippy" class="sr-only sr-only-focusable" href="#content">
     <div class="container">
@@ -71,7 +69,11 @@ $cakeDescription = 'HMTMCSE';
                 </button>
             </form>
             <nav class="collapse bd-links" id="bd-docs-nav">
-
+                <div class="bd-toc-item active">
+                    <ul class="nav bd-sidenav">
+                        <li><a href="<?= $this->Url->build(['controller' => 'UpdateContent', 'action' => 'index'])?>"><h6>Update Content</h6></a></li>
+                        </ul>
+                </div>
             </nav>
         </div>
         <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content" role="main">
