@@ -40,5 +40,14 @@ class AppUtils
         return preg_replace($find, $replace, $text, 1);
     }
 
+    public static function loadConfig(){
+        $config = null;
+        if (file_exists(PathResolver::getConfig())){
+            $fileIo = new FileAndDirectoryService();
+            $config = $fileIo->getJsonFromFile(PathResolver::getConfig());
+        }
+        return $config;
+    }
+
 
 }

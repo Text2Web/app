@@ -11,13 +11,24 @@ namespace App\Utils;
 
 class PathResolver
 {
+    const BITBUCKET_REPO_API = "https://api.bitbucket.org/2.0/repositories/";
+
     private static $CONTENT_DIR = "content";
     private static $WEB_ROOT = "webroot";
     private static $UPDATE_TEMP_LOG = "updateTempLog";
+    private static $CONFIG = "config";
 
 
     public static function getContentRoot() {
         return ROOT . DS . self::$CONTENT_DIR;
+    }
+
+    public static function getConfigDirectory() {
+        return ROOT . DS . self::$CONFIG;
+    }
+
+    public static function getConfig() {
+        return self::getConfigDirectory() . DS . "config.json";
     }
 
     public static function getUpdateTemp() {
@@ -70,6 +81,10 @@ class PathResolver
 
     public static function concatPath($prefix, $postfix) {
         return $prefix . DS . $postfix;
+    }
+
+    public static function getSrcDownload($repositoryName, $slag, $branch){
+        return self::BITBUCKET_REPO_API . "$repositoryName/$slag/src/$branch/";
     }
 
 }

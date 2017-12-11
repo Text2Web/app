@@ -8,6 +8,8 @@
 
 namespace App\Service;
 
+use App\Utils\PathResolver;
+
 class HttpRequest {
 
     public $url = null;
@@ -144,16 +146,36 @@ class HttpConnectionService
     const GET = "GET";
     const DELETE = "DELETE";
 
+
+    public function setBasicAuth($username, $password){
+        $basicAuth = array(
+            'Content-Type:application/json',
+            'Authorization: Basic '. base64_encode("$username:$password")
+        );
+        if ($this->headers !== null || is_array($this->headers)){
+            array_merge($this->headers, $basicAuth);
+        }else{
+            $this->headers = $basicAuth;
+        }
+    }
+
     public function DOWNLOAD($url, $saveLocation, $method = self::GET){
+        $parentDirectory = dirname($saveLocation);
+        if (!file_exists($parentDirectory)){
+            mkdir($parentDirectory, "0755", true);
+        }
         $response = $this->httpRequest(
             HttpRequest::instance()
                 ->setUrl($url)
                 ->setMethod($method)
         );
-
-        $file = fopen($saveLocation, "w+");
-        fputs($file, $response->getResponseData());
-        fclose($file);
+        if ($response->isSuccess()){
+            $openFile = fopen($saveLocation, "w+");
+            fputs($openFile, $response->getResponseData());
+            fclose($openFile);
+            return true;
+        }
+        return false;
     }
 
     public function POST($url, $params){
@@ -223,30 +245,5 @@ class HttpConnectionService
         $httpResponse->setHttpCode($httpStatus);
         $httpResponse->setResponseData($response);
         return $httpResponse;
-    }
-
-    public static function downloadFile(){
-        $source = "https://api.bitbucket.org/2.0/repositories/hmtmcse/hmtmcse_com/src/master/1.java/1.bismillah/1.introduction.md";
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type:application/json',
-            'Authorization: Basic '. base64_encode(":")
-        ));
-        curl_setopt($ch, CURLOPT_URL, $source);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $data = curl_exec ($ch);
-
-
-        $error = curl_error($ch);
-        curl_close ($ch);
-
-
-        print_r($error);
-
-        $destination = PathResolver::getUpdateTemp() . "/1.introduction.md";
-        $file = fopen($destination, "w+");
-        fputs($file, $data);
-        fclose($file);
     }
 }

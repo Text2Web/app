@@ -1,0 +1,7 @@
+{
+  "bitbucketUsername" : "",
+  "bitbucketPassword" : "",
+  "repository" : "",
+  "repositorySlag" : "",
+  "repositoryBranch" : "master"
+}
