@@ -170,7 +170,7 @@ class HttpConnectionService
                 ->setMethod($method)
         );
         if ($response->isSuccess()){
-            $openFile = fopen($saveLocation, "w+");
+            $openFile = fopen($saveLocation, "w+x");
             fputs($openFile, $response->getResponseData());
             fclose($openFile);
             return true;
