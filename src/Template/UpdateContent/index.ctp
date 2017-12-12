@@ -15,6 +15,7 @@
             <tr>
                 <th scope="col">Commit</th>
                 <th scope="col">Commit Hash</th>
+                <th scope="col">Files</th>
                 <th scope="col">Date</th>
                 <th scope="col">Action</th>
             </tr>
@@ -24,6 +25,7 @@
             <tr>
                 <td><?= $log->commitsMessage ?></td>
                 <td><?= $log->commitsLog ?></td>
+                <td>Files</td>
                 <td><?= $log->date ?></td>
                 <td></td>
             </tr>
