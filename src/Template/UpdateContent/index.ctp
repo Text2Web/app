@@ -2,10 +2,8 @@
     <div class="card-header">
         Update Content
         <span class="float-right">
-            <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-secondary">Left</button>
-  <button type="button" class="btn btn-secondary">Middle</button>
-  <button type="button" class="btn btn-secondary">Right</button>
+            <div class="btn-group">
+                <a href="<?= $this->Url->build(['controller' => 'UpdateContent', 'action' => 'downloadChangFileLog'])?>" class="btn btn-secondary">Download Change Logs</a>
 </div>
         </span>
     </div>
@@ -21,14 +19,14 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach($updateLogs as $log): ?>
-            <tr>
-                <td><?= $log->commitsMessage ?></td>
-                <td><?= $log->commitsLog ?></td>
-                <td>Files</td>
-                <td><?= $log->date ?></td>
-                <td></td>
-            </tr>
+            <?php foreach ($updateLogs as $log): ?>
+                <tr>
+                    <td><?= $log->commitsMessage ?></td>
+                    <td><?= $log->commitsLog ?></td>
+                    <td>Files</td>
+                    <td><?= $log->date ?></td>
+                    <td></td>
+                </tr>
             <?php endforeach; ?>
             </tbody>
         </table>

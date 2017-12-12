@@ -40,7 +40,7 @@ class ContentUpdateService
                         if ($httpResponse["code"] === 200){
                             $fileChanged = $this->parseGitDiff($httpResponse["response"]);
                             if (count($fileChanged) !== 0){
-                                $this->writeToFile(json_encode($fileChanged), ".git");
+                                $this->writeToFile(json_encode($fileChanged), ".git", $json->push->changes[0]->commits[0]->hash);
                             }
                         }
                     }
@@ -49,10 +49,11 @@ class ContentUpdateService
         }
     }
 
-    public function writeToFile($text, $extension = ".json"){
+    public function writeToFile($text, $extension = ".json", $name = null){
         $location = PathResolver::getUpdateTemp();
         FileAndDirectoryService::notExistCreateDir($location);
-        file_put_contents( $location . DS . uniqid() . $extension, $text);
+        $name = $name == null ? uniqid() : $name;
+        file_put_contents( $location . DS . $name . $extension, $text);
     }
 
     public function writeUpdateLog($request){
