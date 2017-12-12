@@ -154,6 +154,7 @@ class ContentUpdateService
             $config = $this->getApiConfig();
             $downloadURL = PathResolver::getSrcDownload($config->repository, $config->repositorySlag, $config->repositoryBranch);
             $httpConnection = new HttpConnectionService();
+            $httpConnection->setBasicAuth($config->bitbucketUsername,$config->bitbucketPassword);
             echo "<pre>";
             foreach ($jsonObject as $file){
                 switch ($file->modifyType){
