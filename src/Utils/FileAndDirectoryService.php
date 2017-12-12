@@ -149,4 +149,32 @@ class FileAndDirectoryService
            }
         }
     }
+
+    public function delete($path){
+        if (file_exists($path)){
+            unlink($path);
+        }
+    }
+
+    function isEmptyDir($dirname)
+    {
+        if (!is_dir($dirname)) return false;
+        foreach (scandir($dirname) as $file)
+        {
+            if (!in_array($file, array('.','..','.svn','.git'))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function deleteRecursive($path){
+        if (file_exists($path)){
+            $this->delete($path);
+        }
+        $path = dirname($path);
+        if ($this->isEmptyDir($path)){
+            $this->deleteRecursive($path);
+        }
+    }
 }

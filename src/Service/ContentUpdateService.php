@@ -23,8 +23,28 @@ class ContentUpdateService
     const NEW_FILE = "NEW_FILE";
     const DELETE = "DELETE";
     const INVALID = "INVALID";
+    const DATA_FILE_EXTENSION = "_data.json";
+
+    public function getApiConfig(){
+        $config = AppUtils::loadConfig();
+        $configObj = new stdClass();
+        $configObj->bitbucketUsername = "";
+        $configObj->bitbucketPassword = "";
+        $configObj->repository = "";
+        $configObj->repositorySlag = "";
+        $configObj->repositoryBranch = "";
+        if ($config !== null &&  $config->bitbucketUsername !== null && $config->bitbucketPassword !== null){
+            $configObj->bitbucketUsername = $config->bitbucketUsername;
+            $configObj->bitbucketPassword = $config->bitbucketPassword;
+            $configObj->repository = $config->repository;
+            $configObj->repositorySlag = $config->repositorySlag;
+            $configObj->repositoryBranch = $config->repositoryBranch;
+        }
+        return $configObj;
+    }
 
     public function scanLogDirAndDownloadDiff(){
+        $config = $this->getApiConfig();
         $fileAndDirectoryService = new FileAndDirectoryService();
         $files = $fileAndDirectoryService->scanDirectory(PathResolver::getUpdateTemp(), false, "json");
         foreach ($files as $file){
@@ -34,13 +54,13 @@ class ContentUpdateService
                     if ($change->links->diff->href){
                         $headers = array(
                             'Content-Type:application/json',
-                            'Authorization: Basic '. base64_encode("user:pass")
+                            'Authorization: Basic '. base64_encode("$config->bitbucketUsername:$config->bitbucketPassword")
                         );
                         $httpResponse = HttpConnection::makeCurlCall($change->links->diff->href, "GET", null, null, $headers);
                         if ($httpResponse["code"] === 200){
                             $fileChanged = $this->parseGitDiff($httpResponse["response"]);
                             if (count($fileChanged) !== 0){
-                                $this->writeToFile(json_encode($fileChanged), ".git", $json->push->changes[0]->commits[0]->hash);
+                                $this->writeToFile(json_encode($fileChanged), ".git", str_replace(self::DATA_FILE_EXTENSION, "", $file->name));
                             }
                         }
                     }
@@ -49,7 +69,7 @@ class ContentUpdateService
         }
     }
 
-    public function writeToFile($text, $extension = ".json", $name = null){
+    public function writeToFile($text, $extension = self::DATA_FILE_EXTENSION, $name = null){
         $location = PathResolver::getUpdateTemp();
         FileAndDirectoryService::notExistCreateDir($location);
         $name = $name == null ? uniqid() : $name;
@@ -105,7 +125,7 @@ class ContentUpdateService
             $info = new stdClass();
             $jsonObject = $fileAndDirectoryService->getJsonFromFile($log->path);
             $changes = $jsonObject->push->changes[0];
-            $info->fileName = $log->name;
+            $info->fileName = str_replace(self::DATA_FILE_EXTENSION, "", $log->name);
             $info->commitsMessage = trim($changes->commits[0]->message);
 
             $time = strtotime( trim($changes->commits[0]->date));
@@ -114,13 +134,41 @@ class ContentUpdateService
             $info->date = $dateInLocal;
             $info->commitsLog = trim($changes->commits[0]->hash);
             $info->files = array();
-            $gitFile = $path .DS . "$info->commitsLog.git";
+            $gitFile = $path .DS . "$info->fileName.git";
             if (file_exists($gitFile)){
                 $info->files =  $fileAndDirectoryService->getJsonFromFile($gitFile);
             }
             array_push($logList, $info);
         }
        return $logList;
+    }
+
+    public function updateContent($log){
+        $path = PathResolver::getUpdateTemp();
+        $logFile = $path . DS . "$log.git";
+        if (FileAndDirectoryService::isFile($logFile)){
+            $contentPath = PathResolver::getContentRoot();
+            $commitFile = $path . DS . $log . self::DATA_FILE_EXTENSION;
+            $fileAndDirectoryService = new FileAndDirectoryService();
+            $jsonObject = $fileAndDirectoryService->getJsonFromFile($logFile);
+            $config = $this->getApiConfig();
+            $downloadURL = PathResolver::getSrcDownload($config->repository, $config->repositorySlag, $config->repositoryBranch);
+            $httpConnection = new HttpConnectionService();
+            echo "<pre>";
+            foreach ($jsonObject as $file){
+                switch ($file->modifyType){
+                    case self::CHANGED:
+                    case self::NEW_FILE:
+                        $httpConnection->DOWNLOAD($downloadURL . $file->fileName, $contentPath . DS . $file->fileName);
+                        break;
+                    case self::DELETE:
+                        $fileAndDirectoryService->deleteRecursive($contentPath . DS . $file->fileName);
+
+                }
+            }
+            $fileAndDirectoryService->delete($logFile);
+            $fileAndDirectoryService->delete($commitFile);
+        }
     }
 
 

@@ -23,9 +23,20 @@
                 <tr>
                     <td><?= $log->commitsMessage ?></td>
                     <td><?= $log->commitsLog ?></td>
-                    <td>Files</td>
+                    <td>
+                        <ul>
+                        <?php
+                        foreach($log->files as $file){
+                            echo "<li>$file->modifyType : $file->fileName</li>";
+                        } ?>
+                        </ul>
+                    </td>
                     <td><?= $log->date ?></td>
-                    <td></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="<?= $this->Url->build(['controller' => 'UpdateContent', 'action' => 'downloadFiles', 'log' => $log->fileName])?>" class="btn btn-default"><i class="fa fa-angle-double-down fa-lg"></i></a>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
