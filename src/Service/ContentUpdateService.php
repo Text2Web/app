@@ -13,6 +13,7 @@ use App\Utils\AppUtils;
 use App\Utils\FileAndDirectoryService;
 use App\Utils\HttpConnection;
 use App\Utils\PathResolver;
+use stdClass;
 
 class ContentUpdateService
 {
@@ -92,6 +93,33 @@ class ContentUpdateService
             }
         }
         return $gitUpdateLogs;
+    }
+
+    public function getUpdateLogList(){
+        $fileAndDirectoryService = new FileAndDirectoryService();
+        $path = PathResolver::getUpdateTemp();
+        $files = $fileAndDirectoryService->scanDirectory($path, false, "json");
+        $logList = array();
+        foreach ($files as $log){
+            $info = new stdClass();
+            $jsonObject = $fileAndDirectoryService->getJsonFromFile($log->path);
+            $changes = $jsonObject->push->changes[0];
+            $info->fileName = $log->name;
+            $info->commitsMessage = trim($changes->commits[0]->message);
+
+            $time = strtotime( trim($changes->commits[0]->date));
+            $dateInLocal = date("H:i:s d-m-Y ", $time);
+
+            $info->date = $dateInLocal;
+            $info->commitsLog = trim($changes->commits[0]->hash);
+            $info->files = array();
+            $gitFile = $path .DS . "$info->commitsLog.git";
+            if (file_exists($gitFile)){
+                $info->files =  $fileAndDirectoryService->getJsonFromFile($gitFile);
+            }
+            array_push($logList, $info);
+        }
+       return $logList;
     }
 
 

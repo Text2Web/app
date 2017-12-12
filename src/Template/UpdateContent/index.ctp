@@ -13,31 +13,21 @@
         <table class="table table-dark">
             <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Username</th>
+                <th scope="col">Commit</th>
+                <th scope="col">Commit Hash</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
+            <?php foreach($updateLogs as $log): ?>
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td><?= $log->commitsMessage ?></td>
+                <td><?= $log->commitsLog ?></td>
+                <td><?= $log->date ?></td>
+                <td></td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
