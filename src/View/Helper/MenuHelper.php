@@ -59,9 +59,6 @@ class MenuHelper extends Helper
         if ($html === false) {
             $url = $this->Url->build('/');
             $html = '<ul class="navbar-nav bd-navbar-nav flex-row">';
-            $html.= '<li class="nav-item">';
-            $html.= "<a class='nav-link' href='$url'>Home</a>";
-            $html.= '</li>';
             foreach ($menuList as $menu){
                 $parentName = $menu->displayName;
                 $parent = $menu->nameOnly;
