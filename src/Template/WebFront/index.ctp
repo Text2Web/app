@@ -14,7 +14,29 @@
     </div>
     <?php endif; ?>
 
-    <main class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content" role="main">
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- hmtmcse.com top add -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-4219559396865537"
+                 data-ad-slot="6737141894"></ins>
+        </div>
+    </div>
+
+    <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <!-- hmtmcse.com Right -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:300px;height:600px"
+             data-ad-client="ca-pub-4219559396865537"
+             data-ad-slot="6266368609"></ins>
+    </div>
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
 
     <?php if (count($pageData->getChapter()) != 0): ?>
         <div class="row">
@@ -33,6 +55,16 @@
 
 
         <?php $this->UI->getPageContent($pageData)?>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- hmtmcse.com top add -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:728px;height:90px"
+                     data-ad-client="ca-pub-4219559396865537"
+                     data-ad-slot="6737141894"></ins>
+            </div>
+        </div>
 
         <?php if (count($pageData->getChapter()) != 0): ?>
         <div class="row">
