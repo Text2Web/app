@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use Cake\Controller\Controller;
+use Cake\Event\Event;
 
 class RestrictedController extends Controller
 {
@@ -17,5 +18,11 @@ class RestrictedController extends Controller
     {
         parent::initialize();
         $this->viewBuilder()->setLayout("manage-me");
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        return null;
     }
 }
