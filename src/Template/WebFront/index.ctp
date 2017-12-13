@@ -29,11 +29,15 @@
     </div>
 
     <div class="d-none d-xl-block col-xl-2 bd-toc">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- hmtmcse.com Right -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:300px;height:600px"
              data-ad-client="ca-pub-4219559396865537"
              data-ad-slot="6266368609"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>
 
     <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
