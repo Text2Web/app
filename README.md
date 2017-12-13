@@ -72,6 +72,14 @@ bin/cake migrations seed -p ManagePackage
 [//]:# (KEYWORD ::: Java Introduction)
 
 
+/assets/images/java/java-basic-structure.png
+
 Required Page
 ---------------------------
 About Us, Contact Us, Terms & Conditions, Privacy Policy
+
+
+Need To Implement 
+----------------------
+1. Cache Page
+2. Update Cache Remove
