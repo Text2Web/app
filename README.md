@@ -70,3 +70,8 @@ bin/cake migrations seed -p ManagePackage
 [//]:# (TITLE ::: Java Introduction)
 [//]:# (DESCRIPTION ::: Java Introduction)
 [//]:# (KEYWORD ::: Java Introduction)
+
+
+Required Page
+---------------------------
+About Us, Contact Us, Terms & Conditions, Privacy Policy
