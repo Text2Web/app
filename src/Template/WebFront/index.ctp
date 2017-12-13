@@ -19,12 +19,14 @@
     <?php if (count($pageData->getChapter()) != 0): ?>
         <div class="row">
             <div class="col-lg-12">
+                <div class="share-section">
                 <div class="fb-share-button"
                      data-href="<?= $pageURL ?>"
                      data-layout="button_count" data-size="small"
                      data-mobile-iframe="true"></div>
 
                 <g:plus action="share"></g:plus>
+                </div>
             </div>
         </div>
     <?php endif; ?>
@@ -35,7 +37,9 @@
         <?php if (count($pageData->getChapter()) != 0): ?>
         <div class="row">
             <div class="col-lg-12">
-                <div class="fb-comments" data-width="100%" data-href="<?= $pageURL ?>" data-numposts="5"></div>
+                <div class="comments-section">
+                    <div class="fb-comments" data-width="100%" data-href="<?= $pageURL ?>" data-numposts="5"></div>
+                </div>
             </div>
         </div>
         <?php endif; ?>

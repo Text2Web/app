@@ -1,3 +1,20 @@
+.comments-section{
+    margin-top: 50px;
+}
+
+.share-section{
+    display: inline-block;
+    padding: 20px;
+}
+
+.share-section .fb_iframe_widget {
+    vertical-align: middle;
+    height: 28px;
+}
+.share-section div#___plus_0 {
+    vertical-align: middle !important ;
+}
+
 .gsc-control-cse .gsc-table-result {
     font-family : inherit;
 }
