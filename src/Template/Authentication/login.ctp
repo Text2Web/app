@@ -8,7 +8,7 @@
                             <h1 class="text-center login-title">Login Here</h1>
                             <div class="account-wall">
                                 <?= $this->Html->image('logo.png', ['alt' => 'hmtmcse', 'class' => 'profile-img', 'url' => '/']) ?>
-                                <form action="#" class="form-signin">
+                                <form action="<?= $this->Url->build(['controller' => 'Authentication', 'action' => 'doLogin'])?>" method="post" class="form-signin">
                                     <input type="text" name="email" class="form-control" placeholder="Email" required autofocus>
                                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                                     <button class="btn btn-lg btn-primary btn-block" name="doLogin" type="submit">Login</button>

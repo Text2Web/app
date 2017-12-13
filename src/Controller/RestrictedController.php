@@ -23,6 +23,10 @@ class RestrictedController extends Controller
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        return null;
+        if ($this->request->getSession()->read("isLogin")){
+            return null;
+        }else{
+            return $this->redirect(["controller" => "Authentication", "action"=>"login"]);
+        }
     }
 }
