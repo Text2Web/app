@@ -18,7 +18,7 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 
-    <div class="d-none d-xl-block col-xl-2 bd-toc">
+    <div class="d-none d-xl-block col-xl-3 bd-toc">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- hmtmcse.com Right -->
         <ins class="adsbygoogle"
@@ -30,7 +30,7 @@
         </script>
     </div>
 
-    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+    <main class="col-12 col-md-8 col-xl-7 py-md-3 pl-md-5 bd-content" role="main">
 
     <?php if (count($pageData->getChapter()) != 0): ?>
         <div class="row">
