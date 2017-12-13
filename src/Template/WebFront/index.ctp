@@ -18,16 +18,6 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <!-- hmtmcse.com top add -->
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:728px;height:90px"
-                 data-ad-client="ca-pub-4219559396865537"
-                 data-ad-slot="6737141894"></ins>
-        </div>
-    </div>
-
     <div class="d-none d-xl-block col-xl-2 bd-toc">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- hmtmcse.com Right -->
@@ -60,15 +50,6 @@
 
         <?php $this->UI->getPageContent($pageData)?>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- hmtmcse.com top add -->
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:728px;height:90px"
-                     data-ad-client="ca-pub-4219559396865537"
-                     data-ad-slot="6737141894"></ins>
-            </div>
-        </div>
 
         <?php if (count($pageData->getChapter()) != 0): ?>
         <div class="row">
