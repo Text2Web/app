@@ -6,8 +6,8 @@
     <title>
         <?= isset($title) ? $title : "...::: HMTMCSE :::..." ?>
     </title>
-    <meta name="Description" content="<?= isset($metaDescription) ? $metaDescription : "" ?>"/>
-    <meta name="Description" content="<?= isset($keyword) ? $keyword : "" ?>"/>
+    <meta name="description" content="<?= isset($metaDescription) ? $metaDescription : "" ?>"/>
+    <meta name="keyword" content="<?= isset($keyword) ? $keyword : "" ?>"/>
     <?= $this->Html->meta('icon') ?>
 
     <script>
