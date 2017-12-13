@@ -9,6 +9,7 @@
 namespace App\Service;
 
 
+use App\Utils\AppCacheManager;
 use App\Utils\AppUtils;
 use App\Utils\FileAndDirectoryService;
 use App\Utils\HttpConnection;
@@ -169,6 +170,7 @@ class ContentUpdateService
             }
             $fileAndDirectoryService->delete($logFile);
             $fileAndDirectoryService->delete($commitFile);
+            AppCacheManager::cleanAll();
         }
     }
 

@@ -88,8 +88,8 @@ class ReaderService
         $pageContentData = new MDPageContentData();
         $contentRoot = PathResolver::getContentRoot();
         $path = PathResolver::getContentPathByArray($contentRoot, $pageData->getUrlFragments());
-//        $data = AppCacheManager::read($path ? $path : "Empty_PAGE");
-//        if ($data == false){
+        $data = AppCacheManager::read($path ? $path : "Empty_PAGE");
+        if ($data == false){
             $pageContentData->pageContent = "<h1 class='text-center'>Content Not Available.</h1>";
             if (!FileAndDirectoryService::isFile($path) && FileAndDirectoryService::isDirectory($path)){
                 if (isset($pageData->chapter[0])){
@@ -118,9 +118,9 @@ class ReaderService
                 $pageContentData->metaKeyword = isset($pageMD->metaData->keyword)? $pageMD->metaData->keyword : $pageContentData->metaKeyword;
             }
             AppCacheManager::cache($path, serialize($pageContentData));
-//        }{
-//            $pageContentData = unserialize($data);
-//        }
+        }else{
+            $pageContentData = unserialize($data);
+        }
         return $pageContentData;
     }
 
