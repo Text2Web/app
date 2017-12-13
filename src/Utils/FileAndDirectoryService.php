@@ -153,7 +153,11 @@ class FileAndDirectoryService
 
     public function delete($path){
         if (file_exists($path)){
-            unlink($path);
+           if (is_dir($path)){
+               rmdir($path);
+           }elseif(is_file($path)){
+               unlink($path);
+           }
         }
     }
 
