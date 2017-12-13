@@ -33,6 +33,7 @@ Router::scope('/assets', function (RouteBuilder $routes) {
 
 Router::scope('/manage-me', function (RouteBuilder $routes) {
     $routes->connect('/dashboard', ['controller' => 'Dashboard', 'action' => 'index']);
+    $routes->connect('/authentication/login', ['controller' => 'Authentication', 'action' => 'login']);
     $routes->connect('/update-content', ['controller' => 'UpdateContent', 'action' => 'index']);
     $routes->connect('/update-content/download-chang-file-log', ['controller' => 'UpdateContent', 'action' => 'downloadChangFileLog']);
     $routes->connect('/update-content/download-files', ['controller' => 'UpdateContent', 'action' => 'downloadFiles']);
