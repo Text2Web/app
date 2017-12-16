@@ -20,19 +20,17 @@ class MenuHelper extends Helper
     const HOME_PAGE_MENU_CACHE = "HOME_PAGE_MENU_CACHE";
 
 
-    private function leftMenuGenerator($menuList, $parentURL, $isNested = false){
-        $spacing = "";
-        if ($isNested){
-            $spacing = "&nbsp;&nbsp;&nbsp;";
-        }
+    private function leftMenuGenerator($menuList, $parentURL, $spacing = ""){
         $html = "";
         foreach ($menuList as $menu){
             $subParentURL = "$parentURL/$menu->nameOnly";
             $url =  $menu->subMenues === null ? $this->Url->build("/$subParentURL") : "#";
             $displayName = $menu->displayName;
-            $html .= "<li><a href='$url'><h6>$spacing $displayName</h6></a></li>";
             if ($menu->subMenues !== null){
-                $html .= $this->leftMenuGenerator($menu->subMenues, $subParentURL, true);
+                $html .= "<li><a href='$url' class='bd-toc-link'><h6><strong>$spacing $displayName</strong></h6></a></li>";
+                $html .= $this->leftMenuGenerator($menu->subMenues, $subParentURL, $spacing . "&nbsp;&nbsp" );
+            }else{
+                $html .= "<li><a href='$url'><h6>$spacing $displayName</h6></a></li>";
             }
         }
         return $html;

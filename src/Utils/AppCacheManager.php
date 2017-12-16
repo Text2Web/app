@@ -16,7 +16,7 @@ use DirectoryIterator;
 class AppCacheManager
 {
 
-    const isCacheEnable = true;
+    const isCacheEnable = false;
 
     public static function cleanAll(){
         if (file_exists(PathResolver::getCacheDir())){
