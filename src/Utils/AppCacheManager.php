@@ -11,6 +11,7 @@ namespace App\Utils;
 
 use App\View\Helper\MenuHelper;
 use Cake\Cache\Cache;
+use DirectoryIterator;
 
 class AppCacheManager
 {
@@ -18,8 +19,19 @@ class AppCacheManager
     const isCacheEnable = false;
 
     public static function cleanAll(){
-        Cache::delete(MenuHelper::MENU_CACHE);
-        Cache::delete(MenuHelper::HOME_PAGE_MENU_CACHE);
+        if (file_exists(PathResolver::getCacheDir())){
+            foreach (new DirectoryIterator(PathResolver::getCacheDir()) as $fileInfo) {
+                if ($fileInfo->isDot()) continue;
+                if (
+                    $fileInfo->getFilename() === "models" ||
+                    $fileInfo->getFilename() === "persistent" ||
+                    $fileInfo->getFilename() === "views"
+                ){
+                    continue;
+                }
+                unlink($fileInfo->getPathname());
+            }
+        }
     }
 
     public static function cache($cacheKey, $cacheValue){

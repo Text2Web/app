@@ -27,11 +27,13 @@ $cakeDescription = 'HMTMCSE';
     <meta name="keyword" content="<?= isset($keyword) ? $keyword : "" ?>"/>
     <link rel="canonical" href="<?= isset($canonicalName) ? $canonicalName : "" ?>" />
 
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('docs.min.css') ?>
-    <?= $this->Html->css('/font-awesome/font-awesome.min.css') ?>
+    <?= $this->Html->css('font-awesome/css/font-awesome.min.css') ?>
     <?= $this->Html->css('/prettify/prettify.css') ?>
     <?= $this->Html->css('style.css') ?>
 
@@ -43,16 +45,6 @@ $cakeDescription = 'HMTMCSE';
     <?= $this->Html->script('popper.min.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
     <?= $this->Html->script('/prettify/prettify.js') ?>
-    <script>(function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=193886847837547';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-
 </head>
 
 
@@ -78,6 +70,16 @@ $cakeDescription = 'HMTMCSE';
 
 <div class="container-fluid">
     <?= $this->fetch('content') ?>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=193886847837547';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 </div>
 </body>
 </html>

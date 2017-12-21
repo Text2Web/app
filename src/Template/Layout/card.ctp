@@ -57,6 +57,18 @@
     </div>
     <div class="container-area">
         <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="share-section">
+                        <div class="fb-share-button"
+                             data-href="<?= $pageURL ?>"
+                             data-layout="button_count" data-size="small"
+                             data-mobile-iframe="true"></div>
+
+                        <g:plus action="share"></g:plus>
+                    </div>
+                </div>
+            </div>
             <div class="search-part container-fluid">
                 <form>
                     <div class="form-group">
@@ -72,5 +84,14 @@
         </div>
     </div>
 </section>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=193886847837547';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

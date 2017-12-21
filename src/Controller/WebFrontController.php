@@ -22,8 +22,8 @@ class WebFrontController extends AppController
     public function index()
     {
         $this->set("title", "HMTMCSE | Welcome");
-        $this->set("keyword", "Java, PHP, css, js, JavaScript, centos");
-        $this->set("metaDescription", "Tutorial for beginner, Java, php, css, js, JavaScript");
+        $this->set("keyword", "Java, PHP, CSS, JavaScript, CentOS");
+        $this->set("metaDescription", "Tutorial for Beginner, Java, PHP, CSS, JavaScript");
 
         $requestedURL = $this->request->url;
         $pageURL = Router::url($requestedURL, true);
