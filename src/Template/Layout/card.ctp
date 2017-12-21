@@ -24,7 +24,7 @@
 
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('/font-awesome/css/font-awesome.min.css') ?>
+    <?= $this->Html->css('font-awesome/css/font-awesome.min.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
