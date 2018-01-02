@@ -1179,6 +1179,7 @@ class Parsedown
                 'attributes' => array(
                     'src' => $Link['element']['attributes']['href'],
                     'alt' => $Link['element']['text'],
+                    'class' => 'img-fluid',
                 ),
             ),
         );

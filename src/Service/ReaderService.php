@@ -70,7 +70,7 @@ class ReaderService
         return $metaData;
     }
 
-    private function getMarkdownContent($path){
+    public function getMarkdownContent($path){
         $fileAndDirectoryService = new FileAndDirectoryService();
         $pageData = new stdClass();
         $pageData->content = null;

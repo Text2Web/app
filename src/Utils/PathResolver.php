@@ -17,12 +17,26 @@ class PathResolver
     private static $WEB_ROOT = "webroot";
     private static $UPDATE_TEMP_LOG = "updateTempLog";
     private static $CONFIG = "config";
+    private static $ABOUT_INFO = "aboutInfo";
     private static $TMP_CACHE = "tmp" .DS . "cache";
 
 
     public static function getContentRoot() {
         return ROOT . DS . self::$CONTENT_DIR;
     }
+
+    public static function getAboutInfoRoot() {
+        return ROOT . DS . self::$ABOUT_INFO;
+    }
+
+    public static function getCopyrightAboutInfoFile() {
+        return self::getAboutInfoRoot() . DS . "copyright.md";
+    }
+
+    public static function getPrivacyAboutInfoFile() {
+        return self::getAboutInfoRoot() . DS . "privacy.md";
+    }
+
 
     public static function getCacheDir() {
         return ROOT . DS . self::$TMP_CACHE;

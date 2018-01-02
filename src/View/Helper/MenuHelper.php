@@ -79,6 +79,18 @@ class MenuHelper extends Helper
                     $html.= '</li>';
                 }
             }
+            $html .= "<li class='nav-item dropdown'>";
+            $html .= "<a class='nav-link dropdown-toggle' href='#' data-toggle='dropdown'>";
+            $html .= "About";
+            $html .= "</a>";
+            $html .= "<div class='dropdown-menu'>";
+            $staticURL = $this->Url->build("/about/privacy");
+            $html .= "<a class='dropdown-item' href='$staticURL'>Privacy</a>";
+            $staticURL = $this->Url->build("/about/copyright");
+            $html .= "<a class='dropdown-item' href='$staticURL'>Copyright</a>";
+            $html .= "</div>";
+            $html .= "</li>";
+
             $html .= '</ul>';
             AppCacheManager::cache(self::MENU_CACHE, $html);
         }

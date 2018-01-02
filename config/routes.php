@@ -45,6 +45,8 @@ Router::scope('/manage-me', function (RouteBuilder $routes) {
 
 
 Router::scope('/', function (RouteBuilder $routes) {
+    $routes->connect('/about/privacy', ['controller' => 'About', 'action' => 'privacy']);
+    $routes->connect('/about/copyright', ['controller' => 'About', 'action' => 'copyright']);
     $routes->connect('/web-hook', ['controller' => 'WebHook', 'action' => '*']);
     $routes->connect('/web-hook/pull', ['controller' => 'WebHook', 'action' => 'pull']);
     $routes->connect('/*', ['controller' => 'WebFront', 'action' => 'index']);
